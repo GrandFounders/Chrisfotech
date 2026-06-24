@@ -1,0 +1,1991 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="JahBless Ltd. — UK's sole distributor of Africa Queen products. Authentic African food sourced from across the world, delivered to your door from London." />
+  <title>JahBless Ltd. | Authentic African Food Products</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:       #1e5c3a;
+      --green-light: #2d7a50;
+      --gold:        #c8921a;
+      --cream:       #faf6ef;
+      --dark:        #1a1208;
+      --muted:       #6b5e4e;
+      --border:      #e8ddd0;
+      --white:       #ffffff;
+      --radius:      12px;
+      --shadow:      0 4px 24px rgba(0,0,0,.09);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6%;
+      height: 68px;
+      background: rgba(255,255,255,.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow .3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,.07); }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo img { width: 38px; height: 38px; object-fit: contain; }
+    .nav-logo span {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--green);
+    }
+
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; font-size: .88rem;
+      font-weight: 500; color: var(--muted);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--green); }
+
+    .nav-cta {
+      background: var(--green); color: var(--white) !important;
+      padding: 9px 22px; border-radius: 50px;
+      font-weight: 600 !important; transition: background .2s !important;
+    }
+    .nav-cta:hover { background: var(--green-light) !important; }
+
+    .nav-logo span {
+      transition: opacity .35s ease;
+    }
+    nav.minimal .nav-logo span {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .nav-links {
+      transition: opacity .35s ease, transform .35s ease;
+    }
+    nav.minimal .nav-links {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-6px);
+    }
+
+    /* ── MOBILE SLIDE-OUT DRAWER ── */
+    .mobile-overlay {
+      position: fixed; inset: 0;
+      background: rgba(26,18,8,.55);
+      z-index: 90;
+      opacity: 0; pointer-events: none;
+      transition: opacity .3s ease;
+    }
+    .mobile-overlay.open { opacity: 1; pointer-events: auto; }
+
+    .mobile-drawer {
+      position: fixed;
+      top: 0; right: 0; bottom: 0;
+      width: 280px; max-width: 80vw;
+      background: var(--cream);
+      border-left: 1px solid var(--border);
+      z-index: 100;
+      transform: translateX(100%);
+      transition: transform .35s cubic-bezier(.4,0,.2,1);
+      display: flex; flex-direction: column;
+      padding: 0;
+      overflow-y: auto;
+    }
+    .mobile-drawer.open { transform: translateX(0); }
+
+    .drawer-header {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      padding: 22px 24px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .drawer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--green); text-decoration: none;
+    }
+    .drawer-close {
+      background: none; border: none; cursor: pointer;
+      color: var(--muted); font-size: 1.4rem;
+      line-height: 1; padding: 4px; transition: color .2s;
+    }
+    .drawer-close:hover { color: var(--dark); }
+
+    .drawer-links { display: flex; flex-direction: column; flex: 1; padding: 8px 0; }
+    .drawer-links a {
+      display: block;
+      padding: 15px 24px;
+      font-size: .95rem; font-weight: 500;
+      color: var(--muted);
+      text-transform: uppercase; letter-spacing: .08em;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none; transition: color .2s, background .2s;
+    }
+    .drawer-links a:hover { color: var(--dark); background: rgba(30,92,58,.04); }
+    .drawer-links a:last-child { border-bottom: none; }
+    .drawer-links .drawer-cta {
+      margin: 16px 24px 0;
+      background: var(--green); color: var(--white) !important;
+      padding: 13px 22px; border-radius: 50px;
+      text-align: center; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .06em;
+      border-bottom: none;
+    }
+    .drawer-links .drawer-cta:hover { background: var(--green-light) !important; }
+
+    .drawer-theme {
+      padding: 15px 24px 10px;
+      border-top: 1px solid var(--border);
+      margin-top: auto;
+    }
+    .drawer-theme .theme-nav-btn {
+      color: var(--muted) !important;
+      font-size: .88rem;
+    }
+    .drawer-theme .theme-nav-btn:hover { color: var(--green) !important; }
+
+    /* Social row inside mobile drawer */
+    .drawer-social {
+      display: flex; align-items: center; justify-content: space-around;
+      padding: 8px 16px 18px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Hamburger hides while layer panel is open */
+    .nav-hamburger.panel-active {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Drawer dark-mode overrides */
+    [data-theme="dark"] .mobile-drawer {
+      background: #1c1208;
+      border-left-color: rgba(255,255,255,.08);
+    }
+    [data-theme="dark"] .drawer-header { border-bottom-color: rgba(255,255,255,.08); }
+    [data-theme="dark"] .drawer-logo { color: #4ade80; }
+    [data-theme="dark"] .drawer-close { color: rgba(255,255,255,.45); }
+    [data-theme="dark"] .drawer-close:hover { color: #fff; }
+    [data-theme="dark"] .drawer-links a { color: rgba(255,255,255,.65); border-bottom-color: rgba(255,255,255,.06); }
+    [data-theme="dark"] .drawer-links a:hover { color: #fff; background: rgba(255,255,255,.05); }
+    [data-theme="dark"] .drawer-theme { border-top-color: rgba(255,255,255,.08); }
+    [data-theme="dark"] .drawer-theme .theme-nav-btn { color: rgba(255,255,255,.5) !important; }
+    [data-theme="dark"] .drawer-theme .theme-nav-btn:hover { color: #4ade80 !important; }
+    [data-theme="dark"] .drawer-social { border-top-color: rgba(255,255,255,.08); }
+
+    /* ── DESKTOP LAYER PANEL ── */
+    .nav-layer-panel {
+      position: fixed;
+      top: 76px; right: 6%;
+      width: min(280px, 80vw);
+      height: auto;
+      max-height: min(480px, 80vh);
+      background: rgba(255,255,255,.72);
+      backdrop-filter: blur(14px) saturate(1.6);
+      -webkit-backdrop-filter: blur(14px) saturate(1.6);
+      border: 1px solid rgba(255,255,255,.55);
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.1), 0 1px 4px rgba(0,0,0,.07);
+      z-index: 200;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transform: translateY(-8px);
+      transition: opacity .2s ease, transform .2s ease, visibility .2s;
+      overscroll-behavior: contain;
+      touch-action: none;
+    }
+    .nav-layer-panel.open {
+      opacity: 1; visibility: visible; pointer-events: auto;
+      transform: translateY(0);
+    }
+    /* When dragged to a custom position */
+    .nav-layer-panel.nlp-custom {
+      right: auto;
+      transition: opacity .2s ease, visibility .2s;
+    }
+
+    /* Left edge — decorative grip only */
+    .nav-layer-edge {
+      position: absolute;
+      top: 0; left: 0;
+      width: 14px; height: 100%;
+      z-index: 2; pointer-events: none;
+      border-radius: 12px 0 0 12px;
+      background: linear-gradient(to right, rgba(0,0,0,.025), transparent 80%);
+    }
+    .nav-layer-edge::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 5px;
+      width: 3px; height: 28px;
+      margin-top: -14px;
+      border-radius: 2px;
+      background: rgba(0,0,0,.14);
+      box-shadow: 4px 0 0 rgba(0,0,0,.06);
+    }
+
+    /* Bottom-right resize handle */
+    .nav-layer-resize {
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 20px; height: 20px;
+      cursor: nwse-resize;
+      z-index: 10;
+      touch-action: none;
+      user-select: none; -webkit-user-select: none;
+      border-radius: 0 0 12px 0;
+    }
+    .nav-layer-resize::before,
+    .nav-layer-resize::after {
+      content: '';
+      position: absolute;
+      background: rgba(0,0,0,.22);
+      border-radius: 1px;
+    }
+    .nav-layer-resize::before {
+      bottom: 5px; right: 3px;
+      width: 10px; height: 1.5px;
+      transform: rotate(-45deg);
+      transform-origin: right center;
+    }
+    .nav-layer-resize::after {
+      bottom: 9px; right: 3px;
+      width: 6px; height: 1.5px;
+      transform: rotate(-45deg);
+      transform-origin: right center;
+    }
+    [data-theme="dark"] .nav-layer-resize::before,
+    [data-theme="dark"] .nav-layer-resize::after { background: rgba(255,255,255,.25); }
+    [data-theme="dark"] .nav-layer-edge::after { background: rgba(255,255,255,.15); box-shadow: 4px 0 0 rgba(255,255,255,.06); }
+
+    /* Header — cursor:grab signals draggable */
+    .nav-layer-head {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 8px;
+      padding: 12px 12px 10px 14px;
+      border-bottom: 1px solid rgba(0,0,0,.08);
+      flex-shrink: 0;
+      font-size: 13px; color: #3a3530;
+      cursor: grab; user-select: none; -webkit-user-select: none;
+      touch-action: none;
+    }
+    .nav-layer-head:active { cursor: grabbing; }
+    .nav-layer-head strong {
+      color: #3a3530; font-weight: 600; font-size: 13px;
+      line-height: 1.3; padding-top: 6px; pointer-events: none;
+    }
+    .nav-layer-close {
+      flex-shrink: 0;
+      width: 32px; height: 32px;
+      padding: 0; margin: -2px -2px 0 0;
+      border: none; border-radius: 8px;
+      background: transparent; color: rgba(0,0,0,.4);
+      font-size: 22px; line-height: 32px; text-align: center;
+      cursor: pointer; transition: background .15s, color .15s;
+    }
+    .nav-layer-close:hover { background: rgba(0,0,0,.07); color: var(--green); }
+
+    /* Scrollable rows */
+    .nav-layer-scroll {
+      flex: 1; min-height: 0; overflow-y: auto;
+      scrollbar-width: none; -ms-overflow-style: none;
+      padding: 8px; overscroll-behavior: contain; touch-action: pan-y;
+    }
+    .nav-layer-scroll::-webkit-scrollbar { display: none; }
+
+    /* Rows — layer-panel card style */
+    .nav-layer-links { display: flex; flex-direction: column; }
+    .nav-layer-links a {
+      display: flex; align-items: center;
+      padding: 8px 10px; min-height: 44px;
+      margin-bottom: 4px; border-radius: 8px;
+      background: rgba(255,255,255,.65); border: 1px solid rgba(0,0,0,.08);
+      font-size: 13px; font-weight: 500; color: #3a3530;
+      text-decoration: none;
+      transition: background .15s, color .15s, border-color .15s;
+      position: relative; overflow: hidden;
+    }
+    .nav-layer-links a:last-child { margin-bottom: 0; }
+    .nav-layer-links a:hover { background: rgba(255,255,255,.9); color: #1a1208; border-color: rgba(0,0,0,.13); }
+    .nav-layer-links a:active { background: rgba(255,255,255,.55); }
+
+    /* Shop Now — green left accent, like reference page-overlay row */
+    .nav-layer-links .nav-layer-cta {
+      border-left: 3px solid var(--green);
+      color: var(--green) !important; font-weight: 600;
+    }
+    .nav-layer-links .nav-layer-cta:hover { background: rgba(30,92,58,.07) !important; color: var(--green-light) !important; }
+
+    /* Theme strip at bottom */
+    .nav-layer-theme {
+      padding: 8px 14px 10px;
+      border-top: 1px solid rgba(0,0,0,.08); flex-shrink: 0;
+    }
+    .nav-layer-theme .theme-nav-btn { color: rgba(0,0,0,.45) !important; font-size: .82rem; }
+    .nav-layer-theme .theme-nav-btn:hover { color: var(--green) !important; }
+
+    /* Social row inside panel */
+    .nav-layer-social {
+      display: flex; align-items: center; justify-content: space-around;
+      padding: 8px 10px 12px;
+      border-top: 1px solid rgba(0,0,0,.07);
+      flex-shrink: 0;
+      gap: 2px;
+    }
+    .nls-btn {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; flex-shrink: 0;
+      transition: background .15s, transform .15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .nls-btn svg { width: 18px; height: 18px; display: block; pointer-events: none; }
+    .nls-btn:hover  { transform: scale(1.15); }
+    .nls-btn:active { transform: scale(.90); }
+    .nls-whatsapp  { color: #25D366; }
+    .nls-whatsapp:hover  { background: rgba(37,211,102,.14); }
+    .nls-instagram { color: #C13584; }
+    .nls-instagram:hover { background: rgba(193,53,132,.12); }
+    .nls-facebook  { color: #1877F2; }
+    .nls-facebook:hover  { background: rgba(24,119,242,.12); }
+    .nls-x         { color: #0f0f0f; }
+    .nls-x:hover         { background: rgba(0,0,0,.07); }
+    .nls-tiktok    { color: #010101; }
+    .nls-tiktok:hover    { background: rgba(0,0,0,.07); }
+
+    /* Dark mode — panel */
+    [data-theme="dark"] .nav-layer-panel {
+      background: rgba(20,13,4,.78);
+      border-color: rgba(255,255,255,.1);
+      box-shadow: 0 4px 28px rgba(0,0,0,.5), 0 1px 6px rgba(0,0,0,.35);
+    }
+    [data-theme="dark"] .nav-layer-edge { background: linear-gradient(to right, rgba(255,255,255,.03), transparent 80%); }
+    [data-theme="dark"] .nav-layer-head { border-bottom-color: rgba(255,255,255,.08); color: rgba(255,255,255,.6); }
+    [data-theme="dark"] .nav-layer-head strong { color: rgba(255,255,255,.8); }
+    [data-theme="dark"] .nav-layer-close { color: rgba(255,255,255,.35); }
+    [data-theme="dark"] .nav-layer-close:hover { background: rgba(255,255,255,.09); color: #4ade80; }
+    [data-theme="dark"] .nav-layer-links a { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.08); color: rgba(255,255,255,.7); }
+    [data-theme="dark"] .nav-layer-links a:hover { background: rgba(255,255,255,.12); color: #fff; border-color: rgba(255,255,255,.14); }
+    [data-theme="dark"] .nav-layer-links a:active { background: rgba(255,255,255,.16); }
+    [data-theme="dark"] .nav-layer-links .nav-layer-cta { border-left-color: #4ade80; color: #4ade80 !important; }
+    [data-theme="dark"] .nav-layer-links .nav-layer-cta:hover { background: rgba(74,222,128,.09) !important; color: #86efac !important; }
+    [data-theme="dark"] .nav-layer-theme { border-top-color: rgba(255,255,255,.08); }
+    [data-theme="dark"] .nav-layer-theme .theme-nav-btn { color: rgba(255,255,255,.4) !important; }
+    [data-theme="dark"] .nav-layer-theme .theme-nav-btn:hover { color: #4ade80 !important; }
+    [data-theme="dark"] .nav-layer-social { border-top-color: rgba(255,255,255,.08); }
+    [data-theme="dark"] .nls-x      { color: rgba(255,255,255,.85); }
+    [data-theme="dark"] .nls-tiktok { color: rgba(255,255,255,.85); }
+    [data-theme="dark"] .nls-x:hover     { background: rgba(255,255,255,.1); }
+    [data-theme="dark"] .nls-tiktok:hover{ background: rgba(255,255,255,.1); }
+
+    .nav-hamburger {
+      position: absolute;
+      right: 6%;
+      display: flex; flex-direction: column;
+      gap: 5px; cursor: pointer; padding: 4px;
+      background: none; border: none;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .35s ease;
+    }
+    .nav-hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--dark); border-radius: 2px;
+      transition: all .3s ease;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    nav.minimal .nav-hamburger {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    @media (max-width: 960px) {
+      .nav-hamburger { opacity: 1; pointer-events: all; }
+    }
+
+    /* ── HERO CAROUSEL ── */
+    .hero-carousel {
+      position: relative;
+      width: 100%;
+      height: 92vh;
+      min-height: 560px;
+      max-height: 900px;
+      overflow: hidden;
+      background: #111;
+    }
+
+    .carousel-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+    }
+    .carousel-slide.active { opacity: 1; }
+
+    .carousel-slide::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(10,8,6,.4) 0%,
+        rgba(10,8,6,.6) 50%,
+        rgba(10,8,6,.78) 100%
+      );
+    }
+
+    .hero-content {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+    }
+
+    .hero-boundary-logo {
+      position: fixed;
+      top: calc(68px - 50px); /* centres on the nav/hero boundary */
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      z-index: 101;
+      pointer-events: none;
+      filter: drop-shadow(0 4px 16px rgba(0,0,0,.45));
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(200,146,26,.18);
+      border: 1px solid rgba(200,146,26,.45);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: .78rem; font-weight: 600;
+      color: #e8b84a; letter-spacing: .3px;
+      margin-bottom: 28px;
+      backdrop-filter: blur(6px);
+    }
+    .hero-badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 6vw, 4.5rem);
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -1px;
+      line-height: 1.08;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 24px rgba(0,0,0,.4);
+    }
+    .hero-content h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-content p {
+      font-size: clamp(.95rem, 2vw, 1.1rem);
+      color: rgba(255,255,255,.72);
+      max-width: 540px;
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+
+    .hero-buttons {
+      display: flex; gap: 14px;
+      flex-wrap: wrap; justify-content: center;
+    }
+
+    .btn-primary {
+      background: var(--green); color: var(--white);
+      padding: 13px 32px; border-radius: 9px;
+      text-decoration: none; font-weight: 700;
+      font-size: .95rem; transition: background .15s, transform .1s;
+    }
+    .btn-primary:hover { background: var(--green-light); }
+
+    .btn-secondary {
+      background: rgba(255,255,255,.1); color: #fff;
+      padding: 13px 32px; border-radius: 9px;
+      border: 1px solid rgba(255,255,255,.3);
+      text-decoration: none; font-weight: 500;
+      font-size: .95rem;
+      backdrop-filter: blur(6px);
+      transition: background .15s, border-color .15s;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,.18); border-color: rgba(255,255,255,.5); }
+
+    /* product strip inside hero */
+    .hero-products {
+      display: flex; gap: 12px; justify-content: center;
+      flex-wrap: wrap; margin-top: 36px;
+    }
+    .hero-product {
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.22);
+      backdrop-filter: blur(8px);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 8px;
+      width: 130px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background .2s, transform .2s;
+    }
+    .hero-product:hover {
+      background: rgba(255,255,255,.22);
+      transform: translateY(-3px);
+    }
+    .hero-product img { width: 64px; height: 64px; object-fit: contain; }
+    .hero-product span {
+      font-size: .7rem; font-weight: 600;
+      color: rgba(255,255,255,.9);
+      text-align: center; line-height: 1.3;
+    }
+
+    .carousel-dots {
+      position: absolute;
+      bottom: 20px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex; gap: 8px;
+    }
+    .carousel-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.35);
+      cursor: pointer;
+      transition: background .3s, transform .3s;
+    }
+    .carousel-dot.active { background: var(--gold); transform: scale(1.3); }
+
+    /* ── WHY JAHBLESS (feature grid) ── */
+    .features {
+      padding: 100px 6%;
+      background: var(--white);
+    }
+    .features-label {
+      text-align: center;
+      font-size: .75rem; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 14px;
+    }
+    .features h2 {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700; color: var(--dark);
+      margin-bottom: 12px;
+    }
+    .features > p {
+      text-align: center;
+      font-size: 1rem; color: var(--muted);
+      max-width: 500px; margin: 0 auto 56px;
+      line-height: 1.7;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 300px));
+      gap: 20px;
+      justify-content: center;
+    }
+    .feature-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--white);
+      transition: box-shadow .3s, transform .3s;
+    }
+    .feature-card:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,.10);
+      transform: translateY(-4px);
+    }
+    .feature-card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+    .feature-card-body {
+      padding: 20px 22px 24px;
+    }
+    .feature-icon {
+      font-size: 1.3rem; margin-bottom: 10px;
+      display: block;
+    }
+    .feature-card h3 {
+      font-size: .95rem; font-weight: 600;
+      color: var(--dark); margin-bottom: 8px;
+    }
+    .feature-card p {
+      font-size: .82rem; color: var(--muted); line-height: 1.6;
+    }
+
+    /* ── PRODUCTS ── */
+    .products {
+      padding: 100px 6%;
+      background: var(--cream);
+    }
+    .section-header {
+      text-align: center; margin-bottom: 56px;
+    }
+    .section-label {
+      display: inline-block;
+      font-size: .75rem; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 12px;
+    }
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700; color: var(--dark);
+    }
+    .section-header p {
+      margin-top: 12px; font-size: 1rem;
+      color: var(--muted); max-width: 500px;
+      margin-left: auto; margin-right: auto;
+      line-height: 1.7;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+    .product-card {
+      border-radius: var(--radius); overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--white);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(0,0,0,.10);
+    }
+    .product-card-image {
+      height: 200px; background: var(--cream);
+      display: flex; align-items: center;
+      justify-content: center; padding: 20px;
+      position: relative;
+    }
+    .product-card-image img {
+      max-width: 100%; max-height: 100%;
+      object-fit: contain;
+      transition: transform .5s;
+    }
+    .product-card:hover .product-card-image img { transform: scale(1.06); }
+    .product-tag {
+      position: absolute; top: 12px; left: 12px;
+      background: var(--green); color: var(--white);
+      font-size: .68rem; font-weight: 600;
+      letter-spacing: .06em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 50px;
+    }
+    .product-card-body { padding: 20px; }
+    .product-card-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; font-weight: 700;
+      color: var(--dark); margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .product-card-body p {
+      font-size: .82rem; color: var(--muted);
+      line-height: 1.6; margin-bottom: 16px;
+    }
+    .product-card-body a {
+      display: inline-flex; align-items: center;
+      gap: 5px; color: var(--green);
+      text-decoration: none; font-weight: 600;
+      font-size: .82rem; transition: gap .2s;
+    }
+    .product-card-body a:hover { gap: 9px; }
+    .product-card-body a::after { content: '→'; }
+
+    /* ── HOW IT WORKS ── */
+    .how {
+      padding: 100px 6%;
+      background: var(--white);
+    }
+    .how-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-top: 56px;
+    }
+    .how-step {
+      display: flex; flex-direction: column;
+      align-items: flex-start; gap: 16px;
+    }
+    .step-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem; font-weight: 700;
+      color: var(--green); opacity: .18;
+      line-height: 1;
+    }
+    .how-step h3 {
+      font-size: 1.1rem; font-weight: 600;
+      color: var(--dark); margin-top: -8px;
+    }
+    .how-step p {
+      font-size: .9rem; color: var(--muted); line-height: 1.7;
+    }
+
+    /* ── VISION ── */
+    .vision {
+      background: var(--cream);
+      padding: 100px 6%;
+    }
+    .vision-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .vision-images {
+      position: relative; height: 500px;
+    }
+    .vision-img-main {
+      position: absolute; top: 0; left: 0;
+      width: 73%; height: 76%;
+      border-radius: var(--radius);
+      object-fit: cover; box-shadow: var(--shadow);
+    }
+    .vision-img-accent {
+      position: absolute; bottom: 0; right: 0;
+      width: 52%; height: 50%;
+      border-radius: var(--radius);
+      object-fit: cover; box-shadow: var(--shadow);
+      border: 4px solid var(--white);
+    }
+    .vision-badge {
+      position: absolute; top: 46%; left: 58%;
+      transform: translate(-50%, -50%);
+      background: var(--gold); color: var(--white);
+      border-radius: var(--radius);
+      padding: 16px 20px; text-align: center;
+      box-shadow: 0 8px 32px rgba(200,146,26,.35); z-index: 2;
+    }
+    .vision-badge strong {
+      display: block; font-family: 'Playfair Display', serif;
+      font-size: 1.9rem; font-weight: 700; line-height: 1;
+    }
+    .vision-badge span { font-size: .72rem; font-weight: 500; opacity: .9; }
+
+    .vision-content { display: flex; flex-direction: column; gap: 0; }
+    .vision-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 2.8vw, 2.5rem);
+      font-weight: 700; line-height: 1.2;
+      color: var(--dark); margin-bottom: 16px;
+    }
+    .vision-content p {
+      font-size: .97rem; color: var(--muted);
+      line-height: 1.75; margin-bottom: 14px;
+    }
+    .vision-features {
+      display: flex; flex-direction: column;
+      gap: 16px; margin: 28px 0;
+    }
+    .vision-feature {
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+    .vision-feature-icon {
+      width: 38px; height: 38px;
+      background: rgba(30,92,58,.1);
+      border-radius: 9px;
+      display: flex; align-items: center;
+      justify-content: center; font-size: 1rem; flex-shrink: 0;
+    }
+    .vision-feature-text strong {
+      display: block; font-size: .92rem;
+      font-weight: 600; color: var(--dark); margin-bottom: 2px;
+    }
+    .vision-feature-text span { font-size: .83rem; color: var(--muted); }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials {
+      padding: 100px 6%;
+      background: var(--white);
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .testimonial-card {
+      background: var(--cream); border-radius: var(--radius);
+      padding: 30px; border: 1px solid var(--border);
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem; line-height: .6;
+      color: var(--green); opacity: .12;
+      position: absolute; top: 18px; left: 22px;
+    }
+    .stars { color: var(--gold); font-size: .95rem; letter-spacing: 2px; margin-bottom: 14px; }
+    .testimonial-card p {
+      font-size: .88rem; color: var(--dark);
+      line-height: 1.7; margin-bottom: 20px;
+      position: relative; z-index: 1;
+    }
+    .testimonial-author { display: flex; align-items: center; gap: 11px; }
+    .testimonial-avatar {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: var(--green); display: flex;
+      align-items: center; justify-content: center;
+      color: var(--white); font-weight: 700;
+      font-size: .85rem; flex-shrink: 0;
+    }
+    .testimonial-author strong { display: block; font-size: .85rem; color: var(--dark); }
+    .testimonial-author span { font-size: .76rem; color: var(--muted); }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background: var(--green);
+      color: var(--white);
+      text-align: center;
+      padding: 100px 6%;
+      position: relative; overflow: hidden;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute; top: -100px; right: -100px;
+      width: 360px; height: 360px; border-radius: 50%;
+      background: rgba(255,255,255,.04);
+    }
+    .cta-banner::after {
+      content: '';
+      position: absolute; bottom: -80px; left: 10%;
+      width: 240px; height: 240px; border-radius: 50%;
+      background: rgba(255,255,255,.03);
+    }
+    .cta-banner p {
+      font-size: .8rem; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase;
+      opacity: .7; margin-bottom: 16px;
+      position: relative; z-index: 1;
+    }
+    .cta-banner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700; line-height: 1.15;
+      max-width: 640px; margin: 0 auto 36px;
+      position: relative; z-index: 1;
+    }
+    .cta-banner h2 em { font-style: italic; color: var(--gold); }
+    .btn-gold {
+      background: var(--gold); color: var(--white);
+      padding: 15px 36px; border-radius: 50px;
+      text-decoration: none; font-weight: 700;
+      font-size: 1rem; transition: opacity .2s, transform .2s;
+      display: inline-block; position: relative; z-index: 1;
+    }
+    .btn-gold:hover { opacity: .88; transform: translateY(-2px); }
+
+    /* ── CONTACT ── */
+    .contact {
+      background: var(--cream);
+      padding: 100px 6%;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 80px; align-items: start;
+    }
+    .contact-info h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 2.5vw, 2.3rem);
+      font-weight: 700; color: var(--dark); margin-bottom: 14px;
+    }
+    .contact-info > p {
+      font-size: .97rem; color: var(--muted);
+      line-height: 1.7; margin-bottom: 36px;
+    }
+    .contact-details { display: flex; flex-direction: column; gap: 18px; }
+    .contact-item { display: flex; align-items: flex-start; gap: 12px; }
+    .contact-icon {
+      width: 42px; height: 42px; background: var(--green);
+      border-radius: 10px; display: flex; align-items: center;
+      justify-content: center; font-size: 1rem; flex-shrink: 0;
+    }
+    .contact-item strong { display: block; font-size: .88rem; font-weight: 600; color: var(--dark); margin-bottom: 2px; }
+    .contact-item p { font-size: .83rem; color: var(--muted); line-height: 1.5; }
+
+    .contact-form {
+      background: var(--white); border-radius: var(--radius);
+      padding: 36px; box-shadow: var(--shadow);
+    }
+    .contact-form h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; font-weight: 600;
+      color: var(--dark); margin-bottom: 22px;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    .form-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; }
+    .form-group label { font-size: .8rem; font-weight: 500; color: var(--dark); }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      padding: 11px 13px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: .88rem; color: var(--dark);
+      background: var(--white);
+      transition: border-color .2s; outline: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: var(--green); }
+    .form-group textarea { min-height: 100px; resize: vertical; }
+    .form-submit {
+      width: 100%; background: var(--green); color: var(--white);
+      border: none; padding: 13px; border-radius: 50px;
+      font-family: 'Inter', sans-serif; font-size: .95rem;
+      font-weight: 600; cursor: pointer; transition: background .2s, transform .2s;
+    }
+    .form-submit:hover { background: var(--green-light); transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      padding: 48px 6% 28px;
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .footer-top {
+      display: flex; justify-content: space-between;
+      align-items: center; margin-bottom: 40px;
+      flex-wrap: wrap; gap: 20px;
+    }
+    .footer-brand {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    .footer-brand img { width: 36px; height: 36px; object-fit: contain; filter: brightness(10); }
+    .footer-brand span {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; color: var(--white); font-weight: 700;
+    }
+    .footer-tagline {
+      font-size: .8rem; color: rgba(255,255,255,.45);
+      letter-spacing: .04em;
+    }
+    .footer-nav { display: flex; gap: 28px; list-style: none; flex-wrap: wrap; }
+    .footer-nav a {
+      text-decoration: none; color: rgba(255,255,255,.55);
+      font-size: .85rem; transition: color .2s;
+    }
+    .footer-nav a:hover { color: var(--white); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 22px;
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 8px;
+    }
+    .footer-bottom span { font-size: .78rem; color: rgba(255,255,255,.4); }
+    .social-links { display: flex; gap: 10px; }
+    .social-link {
+      width: 32px; height: 32px; border-radius: 7px;
+      background: rgba(255,255,255,.07);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.6); text-decoration: none;
+      font-size: .78rem; transition: background .2s;
+    }
+    .social-link:hover { background: var(--green); color: var(--white); }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 960px) {
+      .hero-carousel { height: 85vh; min-height: 480px; }
+      .nav-links { display: none !important; }
+
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .how-steps { grid-template-columns: 1fr; gap: 32px; }
+      .vision-grid { grid-template-columns: 1fr; }
+      .vision-images { height: 340px; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-top { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 600px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .products-grid { grid-template-columns: 1fr; }
+      .hero-products { gap: 12px; }
+      .hero-product { width: 130px; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
+    }
+
+    /* ── THEME TOGGLE (menu item) ── */
+    .theme-nav-btn {
+      background: none; border: none; cursor: pointer;
+      font-size: .88rem; font-family: 'Inter', sans-serif;
+      font-weight: 500; color: var(--muted);
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 0; transition: color .2s;
+    }
+    .theme-nav-btn:hover { color: var(--green); }
+    .theme-label { font-size: .88rem; }
+    [data-theme="dark"] .theme-nav-btn { color: rgba(255,255,255,.6); }
+    [data-theme="dark"] .theme-nav-btn:hover { color: #4ade80; }
+
+    /* ═══════════════════════════════
+       DARK THEME OVERRIDES
+       (hero stays cinematic — no overrides needed there)
+    ═══════════════════════════════ */
+    [data-theme="dark"] body { background: #0a0a0a; color: #f5f0e8; }
+
+    [data-theme="dark"] nav {
+      background: rgba(10,10,10,.9) !important;
+      border-color: rgba(255,255,255,.1) !important;
+    }
+    [data-theme="dark"] .nav-logo span { color: #4ade80; }
+    [data-theme="dark"] .nav-links a { color: rgba(255,255,255,.6); }
+    [data-theme="dark"] .nav-links a:hover { color: #4ade80; }
+    [data-theme="dark"] .nav-hamburger span { background: #f5f0e8; }
+
+    /* features */
+    [data-theme="dark"] .features { background: #141414; }
+    [data-theme="dark"] .features h2 { color: #f5f0e8; }
+    [data-theme="dark"] .features > p { color: rgba(255,255,255,.6); }
+    [data-theme="dark"] .feature-card {
+      background: #1c1c1c; border-color: rgba(255,255,255,.08);
+    }
+    [data-theme="dark"] .feature-card h3 { color: #f5f0e8; }
+    [data-theme="dark"] .feature-card p { color: rgba(255,255,255,.55); }
+
+    /* products */
+    [data-theme="dark"] .products { background: #0a0a0a; }
+    [data-theme="dark"] .section-header h2 { color: #f5f0e8; }
+    [data-theme="dark"] .section-header p { color: rgba(255,255,255,.6); }
+    [data-theme="dark"] .product-card {
+      background: #161616; border-color: rgba(255,255,255,.08);
+    }
+    [data-theme="dark"] .product-card-image { background: #1c1c1c; }
+    [data-theme="dark"] .product-card-body h3 { color: #f5f0e8; }
+    [data-theme="dark"] .product-card-body p { color: rgba(255,255,255,.55); }
+    [data-theme="dark"] .product-card-body a { color: #4ade80; }
+    [data-theme="dark"] .product-card:hover { box-shadow: 0 16px 48px rgba(0,0,0,.5); }
+
+    /* how to order */
+    [data-theme="dark"] .how { background: #141414; }
+    [data-theme="dark"] .how .section-header h2 { color: #f5f0e8; }
+    [data-theme="dark"] .how-step h3 { color: #f5f0e8; }
+    [data-theme="dark"] .how-step p { color: rgba(255,255,255,.6); }
+
+    /* vision */
+    [data-theme="dark"] .vision { background: #0a0a0a; }
+    [data-theme="dark"] .vision-content h2 { color: #f5f0e8; }
+    [data-theme="dark"] .vision-content p { color: rgba(255,255,255,.6); }
+    [data-theme="dark"] .vision-feature-text strong { color: #f5f0e8; }
+    [data-theme="dark"] .vision-feature-text span { color: rgba(255,255,255,.6); }
+    [data-theme="dark"] .vision-feature-icon { background: rgba(74,222,128,.1); }
+    [data-theme="dark"] .vision-img-accent { border-color: #1c1c1c; }
+
+    /* testimonials */
+    [data-theme="dark"] .testimonials { background: #141414; }
+    [data-theme="dark"] .testimonial-card {
+      background: #1c1c1c; border-color: rgba(255,255,255,.08);
+    }
+    [data-theme="dark"] .testimonial-card p { color: rgba(255,255,255,.8); }
+    [data-theme="dark"] .testimonial-author strong { color: #f5f0e8; }
+    [data-theme="dark"] .testimonial-author span { color: rgba(255,255,255,.5); }
+
+    /* contact */
+    [data-theme="dark"] .contact { background: #0a0a0a; }
+    [data-theme="dark"] .contact-info h2 { color: #f5f0e8; }
+    [data-theme="dark"] .contact-info > p { color: rgba(255,255,255,.6); }
+    [data-theme="dark"] .contact-item strong { color: #f5f0e8; }
+    [data-theme="dark"] .contact-item p { color: rgba(255,255,255,.6); }
+    [data-theme="dark"] .contact-form {
+      background: #161616; box-shadow: 0 4px 24px rgba(0,0,0,.5);
+    }
+    [data-theme="dark"] .contact-form h3 { color: #f5f0e8; }
+    [data-theme="dark"] .form-group label { color: rgba(255,255,255,.75); }
+    [data-theme="dark"] .form-group input,
+    [data-theme="dark"] .form-group textarea,
+    [data-theme="dark"] .form-group select {
+      background: #1c1c1c; border-color: rgba(255,255,255,.15); color: #f5f0e8;
+    }
+    [data-theme="dark"] .form-group input:focus,
+    [data-theme="dark"] .form-group textarea:focus,
+    [data-theme="dark"] .form-group select:focus { border-color: #4ade80; }
+  </style>
+
+  <script>
+    /* anti-FOUC: apply saved theme before first paint */
+    (function(){
+      var t = localStorage.getItem('jb-theme');
+      if (t) document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a class="nav-logo" href="#">
+      <span>JAHBLESS LTD.</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#products">Products</a></li>
+      <li><a href="#how">How to Order</a></li>
+      <li><a href="#vision">Our Story</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li>
+        <button id="themeToggle" class="theme-nav-btn" aria-label="Toggle theme" title="Toggle light / dark">
+          🌙 <span class="theme-label">Dark Mode</span>
+        </button>
+      </li>
+      <li><a href="#products" class="nav-cta">Shop Now</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE SLIDE-OUT DRAWER -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <a class="drawer-logo" href="#">JAHBLESS LTD.</a>
+      <button class="drawer-close" id="drawerClose" aria-label="Close menu">✕</button>
+    </div>
+    <div class="drawer-links">
+      <a href="#products">Products</a>
+      <a href="#how">How to Order</a>
+      <a href="#vision">Our Story</a>
+      <a href="#contact">Contact</a>
+      <a href="#products" class="drawer-cta">Shop Now</a>
+    </div>
+    <div class="drawer-theme">
+      <button id="themeToggleMobile" class="theme-nav-btn" aria-label="Toggle theme">
+        🌙 <span class="theme-label-mobile">Dark Mode</span>
+      </button>
+    </div>
+    <div class="drawer-social" aria-label="Social media">
+      <a class="nls-btn nls-whatsapp" href="https://wa.me/44" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </a>
+      <a class="nls-btn nls-instagram" href="https://instagram.com/jahblessltd" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a class="nls-btn nls-facebook" href="https://facebook.com/jahblessltd" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a class="nls-btn nls-x" href="https://x.com/jahblessltd" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" title="X">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a class="nls-btn nls-tiktok" href="https://tiktok.com/@jahblessltd" target="_blank" rel="noopener noreferrer" aria-label="TikTok" title="TikTok">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.69a8.16 8.16 0 004.77 1.52V7.77a4.85 4.85 0 01-1-.08z"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- DESKTOP LAYER PANEL (visible when nav is minimal on desktop) -->
+  <div class="nav-layer-panel" id="navLayerPanel" role="dialog" aria-label="Navigation">
+    <div class="nav-layer-edge"></div>
+    <div class="nav-layer-head">
+      <strong>Navigation</strong>
+      <button class="nav-layer-close" id="navLayerClose" aria-label="Close">×</button>
+    </div>
+    <div class="nav-layer-scroll">
+      <div class="nav-layer-links">
+        <a href="#products">Products</a>
+        <a href="#how">How to Order</a>
+        <a href="#vision">Our Story</a>
+        <a href="#contact">Contact</a>
+        <a href="#products" class="nav-layer-cta">Shop Now</a>
+      </div>
+    </div>
+    <div class="nav-layer-theme">
+      <button id="themeTogglePanel" class="theme-nav-btn" aria-label="Toggle theme">
+        🌙 <span class="theme-label-panel">Dark Mode</span>
+      </button>
+    </div>
+    <div class="nav-layer-social" aria-label="Social media">
+      <a class="nls-btn nls-whatsapp" href="https://wa.me/44" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </a>
+      <a class="nls-btn nls-instagram" href="https://instagram.com/jahblessltd" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a class="nls-btn nls-facebook" href="https://facebook.com/jahblessltd" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a class="nls-btn nls-x" href="https://x.com/jahblessltd" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" title="X">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a class="nls-btn nls-tiktok" href="https://tiktok.com/@jahblessltd" target="_blank" rel="noopener noreferrer" aria-label="TikTok" title="TikTok">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.69a8.16 8.16 0 004.77 1.52V7.77a4.85 4.85 0 01-1-.08z"/></svg>
+      </a>
+    </div>
+    <div class="nav-layer-resize" id="navLayerResize" aria-hidden="true"></div>
+  </div>
+
+  <!-- HERO CAROUSEL -->
+  <div style="position:relative;">
+  <img src="images/logo.png" alt="JahBless Ltd." class="hero-boundary-logo" />
+  <div class="hero-carousel" id="heroCarousel">
+
+    <!-- Background slides -->
+    <div class="carousel-slide active" style="background-image:url('images/hero1.png')"></div>
+    <div class="carousel-slide" style="background-image:url('images/hero2.png')"></div>
+    <div class="carousel-slide" style="background-image:url('images/hero3.png')"></div>
+    <div class="carousel-slide" style="background-image:url('images/hero4.png')"></div>
+
+    <!-- Centred copy -->
+    <div class="hero-content">
+      <h1>World-Class African Food,<br><em>Delivered to Your Door</em></h1>
+      <p>JahBless is the exclusive UK distributor of Africa Queen products — premium African food sourced from across the world and brought straight to your kitchen.</p>
+      <div class="hero-buttons">
+        <a href="#products" class="btn-primary">Shop Africa Queen →</a>
+        <a href="#vision" class="btn-secondary">Our Story</a>
+      </div>
+
+      <div class="hero-products">
+        <a href="mackerel.html" class="hero-product">
+          <img src="images/mackerel.png" alt="Africa Queen Mackerel" />
+          <span>Africa Queen Mackerel</span>
+        </a>
+        <a href="sardine.html" class="hero-product">
+          <img src="images/sardine.png" alt="Africa Queen Sardine" />
+          <span>Africa Queen Sardine</span>
+        </a>
+        <a href="fufu-box.html" class="hero-product">
+          <img src="images/fufubox.png" alt="Fufu Box" />
+          <span>Fufu Box</span>
+        </a>
+        <a href="fufu-family.html" class="hero-product">
+          <img src="images/fufubag.png" alt="Fufu Family Pack" />
+          <span>Fufu Family Pack</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Dots -->
+    <div class="carousel-dots" id="carouselDots">
+      <div class="carousel-dot active" data-index="0"></div>
+      <div class="carousel-dot" data-index="1"></div>
+      <div class="carousel-dot" data-index="2"></div>
+      <div class="carousel-dot" data-index="3"></div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const slides = document.querySelectorAll('.carousel-slide');
+      const dots   = document.querySelectorAll('.carousel-dot');
+      let current  = 0, timer;
+
+      function goTo(n) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = (n + slides.length) % slides.length;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+      }
+
+      function start() { timer = setInterval(() => goTo(current + 1), 5000); }
+      function pause() { clearInterval(timer); }
+
+      dots.forEach(d => d.addEventListener('click', () => { pause(); goTo(+d.dataset.index); start(); }));
+      document.getElementById('heroCarousel').addEventListener('mouseenter', pause);
+      document.getElementById('heroCarousel').addEventListener('mouseleave', start);
+      start();
+    })();
+  </script>
+  </div><!-- end hero wrapper -->
+
+  <!-- WHY JAHBLESS -->
+  <section class="features" id="features">
+    <div class="features-label reveal">Why JahBless</div>
+    <h2 class="reveal">Everything you need from Africa's table</h2>
+    <p class="reveal">No hunting through specialist shops. JahBless delivers authentic, world-sourced African food straight to your door — quality guaranteed.</p>
+
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <img class="feature-card-img" src="images/hero2.png" alt="Globally Sourced" />
+        <div class="feature-card-body">
+          <span class="feature-icon">🌍</span>
+          <h3>Globally Sourced</h3>
+          <p>Our products are carefully selected from the finest producers across the world, bringing authentic African quality to the UK market.</p>
+        </div>
+      </div>
+      <div class="feature-card reveal">
+        <img class="feature-card-img" src="images/feature-brand.png" alt="Sole UK Distributor" />
+        <div class="feature-card-body">
+          <span class="feature-icon">🏅</span>
+          <h3>Sole UK Distributor</h3>
+          <p>JahBless is the exclusive UK distributor of the Africa Queen range — you won't find these products anywhere else in Britain.</p>
+        </div>
+      </div>
+      <div class="feature-card reveal">
+        <img class="feature-card-img" src="images/mackerel.png" alt="Premium Seafood" style="object-fit:contain; background:var(--cream); padding:16px;" />
+        <div class="feature-card-body">
+          <span class="feature-icon">🐟</span>
+          <h3>Premium Seafood</h3>
+          <p>Africa Queen Mackerel and Sardine are rich in nutrients, packed at peak freshness, and perfect for jollof rice and West African cooking.</p>
+        </div>
+      </div>
+      <div class="feature-card reveal">
+        <img class="feature-card-img" src="images/Fufu01232.jpg" alt="Authentic Fufu" />
+        <div class="feature-card-body">
+          <span class="feature-icon">🫙</span>
+          <h3>Authentic Fufu</h3>
+          <p>Smooth, consistent fufu every time — in a convenient box or family pack. The classic West African staple, ready in minutes.</p>
+        </div>
+      </div>
+      <div class="feature-card reveal">
+        <img class="feature-card-img" src="images/feature-delivery.png" alt="UK-Wide Delivery" />
+        <div class="feature-card-body">
+          <span class="feature-icon">🚚</span>
+          <h3>UK-Wide Delivery</h3>
+          <p>We deliver across the whole of the United Kingdom so no matter where you are, authentic African food is never far away.</p>
+        </div>
+      </div>
+      <div class="feature-card reveal">
+        <img class="feature-card-img" src="images/feature-rated.png" alt="5-Star Rated" />
+        <div class="feature-card-body">
+          <span class="feature-icon">⭐</span>
+          <h3>5-Star Rated</h3>
+          <p>Thousands of happy customers across the UK rate JahBless for quality, reliability, and the authentic taste that keeps them coming back.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="products" id="products">
+    <div class="section-header reveal">
+      <div class="section-label">Africa Queen Range</div>
+      <h2>Our Products</h2>
+      <p>JahBless is the sole UK distributor of the Africa Queen range — sourced from across the world, delivered to you.</p>
+    </div>
+
+    <div class="products-grid">
+      <div class="product-card reveal">
+        <div class="product-card-image">
+          <img src="images/mackerel.png" alt="Africa Queen Mackerel" />
+          <span class="product-tag">Bestseller</span>
+        </div>
+        <div class="product-card-body">
+          <h3>Africa Queen Mackerel</h3>
+          <p>Rich, savoury flavour that elevates any dish — especially jollof rice. Firm texture and essential nutrients.</p>
+          <a href="mackerel.html">Learn More →</a>
+        </div>
+      </div>
+
+      <div class="product-card reveal">
+        <div class="product-card-image">
+          <img src="images/sardine.png" alt="Africa Queen Sardine" />
+          <span class="product-tag">Fan Favourite</span>
+        </div>
+        <div class="product-card-body">
+          <h3>Africa Queen Sardine</h3>
+          <p>Tender, flavourful sardines packed with omega-3. A versatile staple for soups, stews, and rice dishes.</p>
+          <a href="sardine.html">Learn More →</a>
+        </div>
+      </div>
+
+      <div class="product-card reveal">
+        <div class="product-card-image">
+          <img src="images/fufubox.png" alt="Africa Queen Fufu Box" />
+          <span class="product-tag">Gluten-Free</span>
+        </div>
+        <div class="product-card-body">
+          <h3>Africa Queen Fufu <small style="font-weight:400;color:var(--muted)">Box</small></h3>
+          <p>Authentic smooth fufu made easy. The classic West African staple in a convenient box, ready in minutes.</p>
+          <a href="fufu-box.html">Learn More →</a>
+        </div>
+      </div>
+
+      <div class="product-card reveal">
+        <div class="product-card-image">
+          <img src="images/fufubag.png" alt="Africa Queen Fufu Family Pack" />
+          <span class="product-tag">Best Value</span>
+        </div>
+        <div class="product-card-body">
+          <h3>Africa Queen Fufu <small style="font-weight:400;color:var(--muted)">Family Pack</small></h3>
+          <p>Generous portions for the whole family. Ideal for big gatherings and weekly meal prep.</p>
+          <a href="fufu-family.html">Learn More →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO ORDER -->
+  <section class="how" id="how">
+    <div class="section-header reveal">
+      <div class="section-label">How It Works</div>
+      <h2>Order in three simple steps</h2>
+      <p>Getting authentic African food from JahBless is fast and straightforward.</p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step reveal">
+        <div class="step-number">1</div>
+        <h3>Browse the range</h3>
+        <p>Explore our full Africa Queen product range — Mackerel, Sardine, Fufu Box, and the Family Pack. All exclusively available through JahBless in the UK.</p>
+      </div>
+      <div class="how-step reveal">
+        <div class="step-number">2</div>
+        <h3>Place your order</h3>
+        <p>Order online via our shop or get in touch directly. We handle individual orders, bulk purchases, and wholesale enquiries.</p>
+      </div>
+      <div class="how-step reveal">
+        <div class="step-number">3</div>
+        <h3>Delivered to your door</h3>
+        <p>We deliver across the UK. You can also visit us in person at KumasiMarket Edmonton, London — open 7 days a week.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISION -->
+  <section class="vision" id="vision">
+    <div class="vision-grid">
+      <div class="vision-images reveal">
+        <img class="vision-img-main"
+          src="https://static.wixstatic.com/media/f6e2d7_05001aa35bd34601bcc9c627abd5acff~mv2.png"
+          alt="African cooking" />
+        <img class="vision-img-accent"
+          src="https://static.wixstatic.com/media/f6e2d7_8dbb09246de944398ad45060baa61d7f~mv2.jpg"
+          alt="Cooking African food" />
+        <div class="vision-badge">
+          <strong>5+</strong>
+          <span>Years of<br>Quality</span>
+        </div>
+      </div>
+
+      <div class="vision-content reveal">
+        <div class="section-label">Our Story</div>
+        <h2>Great, Affordable Food for Everyone</h2>
+        <p>We believe cooking should be accessible, enjoyable, and a delightful experience for all. As the UK's sole distributor of Africa Queen products, our mission is to bring the finest African food — sourced from across the world — to every kitchen in the UK.</p>
+
+        <div class="vision-features">
+          <div class="vision-feature">
+            <div class="vision-feature-icon">🌍</div>
+            <div class="vision-feature-text">
+              <strong>Globally Sourced</strong>
+              <span>Products carefully selected from the best producers around the world.</span>
+            </div>
+          </div>
+          <div class="vision-feature">
+            <div class="vision-feature-icon">🍽️</div>
+            <div class="vision-feature-text">
+              <strong>Authentic African Flavour</strong>
+              <span>Every product is crafted to bring genuine African taste to your table.</span>
+            </div>
+          </div>
+          <div class="vision-feature">
+            <div class="vision-feature-icon">🚚</div>
+            <div class="vision-feature-text">
+              <strong>Nationwide Delivery</strong>
+              <span>We deliver across the whole of the UK — always fresh, always on time.</span>
+            </div>
+          </div>
+        </div>
+        <a href="#contact" class="btn-primary">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <div class="section-header reveal">
+      <div class="section-label">Customer Reviews</div>
+      <h2>What our customers say</h2>
+      <p>Thousands of happy customers across the UK enjoy authentic Africa Queen products from JahBless.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>"JahBless provides excellent services! The team is professional and attentive, making me feel valued as a customer. I highly recommend them for quality and reliability!"</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">K</div>
+          <div>
+            <strong>KumasiMarket Customer</strong>
+            <span>Edmonton, London</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>"I absolutely love cooking with Africa Queen Mackerel! It adds a rich flavour to my dishes that my whole family enjoys. Nothing else comes close to the authentic taste."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">G</div>
+          <div>
+            <strong>GoGreenMag.com</strong>
+            <span>Food &amp; Lifestyle Review</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>"The fufu is a game-changer — smooth, consistent, and ready in minutes. My family can't tell it apart from scratch. We order the Family Pack every month!"</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">A</div>
+          <div>
+            <strong>Amara Osei</strong>
+            <span>Verified Customer</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <p>The Source for the Sauce</p>
+    <h2>Authentic African food, <em>always on your table.</em></h2>
+    <a href="#products" class="btn-gold">Shop Africa Queen →</a>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="section-label">Get in Touch</div>
+        <h2>We'd love to hear from you</h2>
+        <p>Product enquiries, bulk orders, or just want to say hello — we're here.</p>
+        <div class="contact-details">
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <strong>Our Address</strong>
+              <p>50 Cannhall Road, E11 3HZ, London</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🕐</div>
+            <div>
+              <strong>Opening Hours</strong>
+              <p>Mon – Fri: 12pm – 10pm<br/>Sat – Sun: 12pm – 11pm</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div>
+              <strong>Email</strong>
+              <p>info@jahblessltd.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form reveal">
+        <h3>Send a message</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="First name" />
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Last name" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="your@email.com" />
+        </div>
+        <div class="form-group">
+          <label>Subject</label>
+          <select>
+            <option value="">Select a subject</option>
+            <option>Product Enquiry</option>
+            <option>Bulk / Wholesale Order</option>
+            <option>Delivery Information</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="How can we help?"></textarea>
+        </div>
+        <button class="form-submit" onclick="handleSubmit()">Send Message →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <a class="footer-brand" href="#">
+          <img src="images/logo.png" alt="JahBless Ltd." />
+          <span>JAHBLESS LTD.</span>
+        </a>
+        <p class="footer-tagline" style="margin-top:8px">Sole UK Distributor of Africa Queen · Est. London</p>
+      </div>
+      <ul class="footer-nav">
+        <li><a href="#products">Products</a></li>
+        <li><a href="#how">How to Order</a></li>
+        <li><a href="#vision">Our Story</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 JahBless Ltd. All rights reserved. · 50 Cannhall Road, E11 3HZ, London</span>
+      <div class="social-links">
+        <a class="social-link" href="#" aria-label="Facebook">f</a>
+        <a class="social-link" href="#" aria-label="Instagram">in</a>
+        <a class="social-link" href="#" aria-label="WhatsApp">W</a>
+        <a class="social-link" href="#" aria-label="Twitter">𝕏</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const navbar   = document.getElementById('navbar');
+    const carousel = document.getElementById('heroCarousel');
+
+    window.addEventListener('scroll', () => {
+      const scrollY  = window.scrollY;
+      const heroH    = carousel.offsetHeight;
+
+      // Fade + lift the hero — only kicks in after 65% of hero height
+      const fadeStart = heroH * 0.65;
+      const fadeEnd   = heroH * 0.95;
+      const progress  = Math.max(0, Math.min(1, (scrollY - fadeStart) / (fadeEnd - fadeStart)));
+      carousel.style.opacity   = 1 - progress;
+      carousel.style.transform = `translateY(${progress * 30}px)`;
+
+      // Collapse nav: hide links, show hamburger
+      navbar.classList.toggle('minimal',  scrollY > 60);
+      navbar.classList.toggle('scrolled', scrollY > 20);
+    });
+
+    // Nav menus: mobile drawer + desktop layer panel (draggable, resizable, auto-open)
+    (function(){
+      var navbar      = document.getElementById('navbar');
+      var hamburger   = document.getElementById('hamburger');
+      var drawer      = document.getElementById('mobileDrawer');
+      var overlay     = document.getElementById('mobileOverlay');
+      var closeBtn    = document.getElementById('drawerClose');
+      var layerPanel  = document.getElementById('navLayerPanel');
+      var layerClose  = document.getElementById('navLayerClose');
+      var layerHead   = layerPanel.querySelector('.nav-layer-head');
+      var resizeHandle= document.getElementById('navLayerResize');
+
+      var PANEL_POS_KEY  = 'jb-nav-panel-pos';
+      var PANEL_SIZE_KEY = 'jb-nav-panel-size';
+      var dragState   = null;
+      var resizeState = null;
+
+      /* ── Helpers ── */
+      function clamp(v, lo, hi){ return Math.max(lo, Math.min(hi, v)); }
+
+      /* ── Position save/restore ── */
+      function savePanelPos(){
+        try {
+          var r = layerPanel.getBoundingClientRect();
+          sessionStorage.setItem(PANEL_POS_KEY, JSON.stringify({left: Math.round(r.left), top: Math.round(r.top)}));
+        } catch(e){}
+      }
+      function restorePanelPos(){
+        try {
+          var d = JSON.parse(sessionStorage.getItem(PANEL_POS_KEY) || 'null');
+          if (d && typeof d.left === 'number') {
+            layerPanel.classList.add('nlp-custom');
+            layerPanel.style.left  = d.left + 'px';
+            layerPanel.style.top   = d.top  + 'px';
+            layerPanel.style.right = 'auto';
+          }
+        } catch(e){}
+      }
+
+      /* ── Size save/restore ── */
+      function savePanelSize(){
+        try {
+          sessionStorage.setItem(PANEL_SIZE_KEY, JSON.stringify({
+            w: layerPanel.style.width    || '',
+            h: layerPanel.style.maxHeight|| ''
+          }));
+        } catch(e){}
+      }
+      function restorePanelSize(){
+        try {
+          var d = JSON.parse(sessionStorage.getItem(PANEL_SIZE_KEY) || 'null');
+          if (d && d.w) { layerPanel.style.width     = d.w; }
+          if (d && d.h) { layerPanel.style.maxHeight = d.h; }
+        } catch(e){}
+      }
+
+      /* Restore size on load */
+      restorePanelSize();
+
+      /* ── Mobile drawer ── */
+      function openDrawer(){
+        hamburger.classList.add('open');
+        drawer.classList.add('open');
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeDrawer(){
+        hamburger.classList.remove('open');
+        drawer.classList.remove('open');
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      /* ── Desktop layer panel ── */
+      function openPanel(){
+        restorePanelPos();
+        layerPanel.classList.add('open');
+        hamburger.classList.remove('open');
+        hamburger.classList.add('panel-active');    // hide hamburger while panel is visible
+      }
+      function closePanel(){
+        hamburger.classList.remove('open');
+        hamburger.classList.remove('panel-active'); // restore hamburger
+        layerPanel.classList.remove('open');
+      }
+
+      /* ── Auto-open panel when nav collapses (desktop only) ── */
+      var navObserver = new MutationObserver(function(){
+        if (window.innerWidth > 960) {
+          if (navbar.classList.contains('minimal')) {
+            openPanel();
+          } else {
+            closePanel();
+          }
+        }
+      });
+      navObserver.observe(navbar, { attributes: true, attributeFilter: ['class'] });
+
+      /* ── Header drag (move panel) with velocity / inertia ── */
+      var velX = 0, velY = 0, lastT = 0, lastPX = 0, lastPY = 0, rafId = null;
+
+      layerHead.addEventListener('pointerdown', function(e){
+        if (e.button !== 0 && e.pointerType === 'mouse') return;
+        if (e.target.closest('.nav-layer-close')) return;
+        if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+        var r = layerPanel.getBoundingClientRect();
+        dragState = { pid: e.pointerId, sx: e.clientX, sy: e.clientY, sl: r.left, st: r.top, moved: false };
+        velX = 0; velY = 0;
+        lastPX = e.clientX; lastPY = e.clientY; lastT = performance.now();
+        try { layerHead.setPointerCapture(e.pointerId); } catch(er){}
+        layerHead.style.cursor = 'grabbing';
+        e.preventDefault();
+      });
+
+      layerHead.addEventListener('pointermove', function(e){
+        if (!dragState || e.pointerId !== dragState.pid) return;
+        var dx = e.clientX - dragState.sx;
+        var dy = e.clientY - dragState.sy;
+        if (!dragState.moved && Math.hypot(dx, dy) < 6) return;
+        dragState.moved = true;
+        var pw = layerPanel.offsetWidth  || 280;
+        var ph = layerPanel.offsetHeight || 200;
+        var nl = clamp(dragState.sl + dx, 8, window.innerWidth  - pw - 8);
+        var nt = clamp(dragState.st + dy, 8, window.innerHeight - Math.min(ph, 120) - 8);
+        layerPanel.classList.add('nlp-custom');
+        layerPanel.style.left  = nl + 'px';
+        layerPanel.style.top   = nt + 'px';
+        layerPanel.style.right = 'auto';
+        // Rolling velocity (exponential smoothing)
+        var now = performance.now(), dt = now - lastT;
+        if (dt > 0) {
+          var alpha = Math.min(1, dt / 40);
+          velX = velX * (1 - alpha) + ((e.clientX - lastPX) / dt * 16) * alpha;
+          velY = velY * (1 - alpha) + ((e.clientY - lastPY) / dt * 16) * alpha;
+        }
+        lastPX = e.clientX; lastPY = e.clientY; lastT = performance.now();
+      });
+
+      layerHead.addEventListener('pointerup', function(e){
+        if (!dragState || e.pointerId !== dragState.pid) return;
+        var didMove = dragState.moved;
+        dragState = null;
+        try { layerHead.releasePointerCapture(e.pointerId); } catch(er){}
+        layerHead.style.cursor = 'grab';
+        if (!didMove) return;
+        // Cap speed then launch inertia
+        var spd = Math.hypot(velX, velY);
+        if (spd > 38) { var s = 38 / spd; velX *= s; velY *= s; }
+        if (spd > 0.8) {
+          var friction = 0.92;
+          var curLeft = parseFloat(layerPanel.style.left) || 0;
+          var curTop  = parseFloat(layerPanel.style.top)  || 0;
+          var pw = layerPanel.offsetWidth, ph = layerPanel.offsetHeight;
+          (function tick(){
+            velX *= friction; velY *= friction;
+            curLeft = clamp(curLeft + velX, 8, window.innerWidth  - pw - 8);
+            curTop  = clamp(curTop  + velY, 8, window.innerHeight - ph - 8);
+            layerPanel.style.left = curLeft + 'px';
+            layerPanel.style.top  = curTop  + 'px';
+            if (Math.hypot(velX, velY) > 0.25) {
+              rafId = requestAnimationFrame(tick);
+            } else {
+              rafId = null; savePanelPos();
+            }
+          })();
+        } else {
+          savePanelPos();
+        }
+      });
+
+      layerHead.addEventListener('pointercancel', function(e){
+        if (dragState && e.pointerId === dragState.pid){
+          dragState = null; layerHead.style.cursor = 'grab';
+        }
+      });
+
+      /* ── Bottom-right resize ── */
+      resizeHandle.addEventListener('pointerdown', function(e){
+        if (e.button !== 0 && e.pointerType === 'mouse') return;
+        resizeState = {
+          pid: e.pointerId,
+          sx: e.clientX, sy: e.clientY,
+          sw: layerPanel.offsetWidth,
+          sh: layerPanel.offsetHeight
+        };
+        try { resizeHandle.setPointerCapture(e.pointerId); } catch(er){}
+        e.preventDefault();
+        e.stopPropagation();
+      });
+
+      resizeHandle.addEventListener('pointermove', function(e){
+        if (!resizeState || e.pointerId !== resizeState.pid) return;
+        var nw = clamp(resizeState.sw + (e.clientX - resizeState.sx), 200, 360);
+        var nh = clamp(resizeState.sh + (e.clientY - resizeState.sy), 180, window.innerHeight - 80);
+        layerPanel.style.width     = nw + 'px';
+        layerPanel.style.maxHeight = nh + 'px';
+        e.preventDefault();
+      });
+
+      resizeHandle.addEventListener('pointerup', function(e){
+        if (!resizeState || e.pointerId !== resizeState.pid) return;
+        resizeState = null;
+        try { resizeHandle.releasePointerCapture(e.pointerId); } catch(er){}
+        savePanelSize();
+      });
+
+      resizeHandle.addEventListener('pointercancel', function(e){
+        if (resizeState && e.pointerId === resizeState.pid) resizeState = null;
+      });
+
+      /* ── Hamburger: route by screen width (manual toggle) ── */
+      hamburger.addEventListener('click', function(){
+        if (window.innerWidth > 960) {
+          layerPanel.classList.contains('open') ? closePanel() : openPanel();
+        } else {
+          drawer.classList.contains('open') ? closeDrawer() : openDrawer();
+        }
+      });
+
+      /* Mobile drawer controls */
+      overlay.addEventListener('click', closeDrawer);
+      closeBtn.addEventListener('click', closeDrawer);
+      drawer.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeDrawer); });
+
+      /* Layer panel — only × closes it */
+      layerClose.addEventListener('click', closePanel);
+
+      /* Window resize: close whichever doesn't apply */
+      window.addEventListener('resize', function(){
+        if (window.innerWidth <= 960) closePanel();
+        else closeDrawer();
+      });
+    })();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 70);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    function handleSubmit() {
+      alert('Thank you! We\'ll be in touch shortly.');
+    }
+
+    /* ── THEME TOGGLE ── */
+    (function(){
+      var html       = document.documentElement;
+      var btn        = document.getElementById('themeToggle');
+      var btnMob     = document.getElementById('themeToggleMobile');
+      var btnPanel   = document.getElementById('themeTogglePanel');
+      var saved      = localStorage.getItem('jb-theme') || 'light';
+
+      function applyTheme(t){
+        html.setAttribute('data-theme', t);
+        var isDark = t === 'dark';
+        btn.innerHTML      = isDark ? '☀️ <span class="theme-label">Light Mode</span>'        : '🌙 <span class="theme-label">Dark Mode</span>';
+        btnMob.innerHTML   = isDark ? '☀️ <span class="theme-label-mobile">Light Mode</span>' : '🌙 <span class="theme-label-mobile">Dark Mode</span>';
+        btnPanel.innerHTML = isDark ? '☀️ <span class="theme-label-panel">Light Mode</span>'  : '🌙 <span class="theme-label-panel">Dark Mode</span>';
+      }
+
+      applyTheme(saved);
+
+      function toggle(){
+        var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('jb-theme', next);
+        applyTheme(next);
+      }
+      btn.addEventListener('click', toggle);
+      btnMob.addEventListener('click', toggle);
+      btnPanel.addEventListener('click', toggle);
+    })();
+  </script>
+
+
+</body>
+</html>

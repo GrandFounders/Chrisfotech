@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="ChrisFoTech Cleaning Services — Professional residential and commercial cleaning across the UK. Reliable, thorough, and tailored to you."/>
+  <title>ChrisFoTech | Professional Cleaning Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:      #0a0a0a;
+      --s1:      #141414;
+      --s2:      #1c1c1c;
+      --green:   #1a4a8a;
+      --glow:    #3b82f6;
+      --gold:    #f59e0b;
+      --white:   #ffffff;
+      --muted:   rgba(255,255,255,.5);
+      --border:  rgba(255,255,255,.08);
+      --radius:  16px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--white); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 6%; height: 64px;
+      background: rgba(10,10,10,.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      overflow: visible;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; padding-left: 104px; }
+    /* logo image sits as a fixed element straddling the nav/hero boundary */
+    .hero-boundary-logo {
+      position: fixed;
+      top: 64px; /* top edge sits exactly at the nav's bottom edge */
+      left: 6%;
+      height: 96px; width: auto; object-fit: contain;
+      z-index: 101;
+      pointer-events: none;
+    }
+    .nav-logo span { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: .08em; color: var(--white); }
+    .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: .88rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      background: var(--green); color: var(--white);
+      padding: 9px 22px; border-radius: 50px;
+      text-decoration: none; font-weight: 600; font-size: .85rem;
+      transition: background .2s;
+    }
+    .nav-cta:hover { background: #2563eb; }
+
+    /* ── HERO CAROUSEL ── */
+    .hero-carousel {
+      position: relative; width: 100%;
+      height: 96vh; min-height: 560px; max-height: 940px;
+      overflow: hidden; background: #111;
+    }
+    .carousel-slide {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      opacity: 0; transition: opacity 1.2s ease;
+    }
+    .carousel-slide.active { opacity: 1; }
+    .carousel-slide::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(10,8,6,.12) 0%, rgba(10,8,6,.28) 50%, rgba(10,8,6,.62) 100%);
+    }
+    .hero-content {
+      position: absolute; inset: 0; z-index: 2;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 24px;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(59,130,246,.15);
+      border: 1px solid rgba(59,130,246,.4);
+      border-radius: 20px; padding: 6px 18px;
+      font-size: .78rem; font-weight: 600;
+      color: #93c5fd; letter-spacing: .06em;
+      text-transform: uppercase; margin-bottom: 24px;
+    }
+    .hero-content h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4.5rem, 11vw, 10rem);
+      font-weight: 400; color: #fff;
+      letter-spacing: .02em; line-height: .95;
+      margin-bottom: 22px;
+      text-shadow: 0 0 80px rgba(59,130,246,.2);
+    }
+    .hero-content h1 em {
+      font-style: italic; font-family: 'Playfair Display', serif;
+      color: var(--gold); letter-spacing: 0;
+    }
+    .hero-content p {
+      font-size: clamp(.95rem, 2vw, 1.1rem);
+      color: rgba(255,255,255,.72); max-width: 540px;
+      margin-bottom: 40px; line-height: 1.7;
+    }
+    .hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+    .btn-primary {
+      background: var(--green); color: var(--white);
+      padding: 14px 34px; border-radius: 50px;
+      text-decoration: none; font-weight: 700; font-size: 1rem;
+      box-shadow: 0 0 30px rgba(59,130,246,.3);
+      transition: box-shadow .3s, transform .2s; display: inline-block;
+    }
+    .btn-primary:hover { box-shadow: 0 0 50px rgba(59,130,246,.5); transform: translateY(-2px); }
+    .btn-secondary {
+      background: rgba(255,255,255,.07); color: var(--white);
+      padding: 14px 34px; border-radius: 50px;
+      border: 1px solid rgba(255,255,255,.2);
+      text-decoration: none; font-weight: 500; font-size: 1rem;
+      backdrop-filter: blur(6px); transition: background .2s;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,.13); }
+
+    .hero-products {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 3;
+      display: flex; justify-content: center; gap: 0;
+      border-top: 1px solid rgba(255,255,255,.1);
+      background: rgba(10,10,10,.6); backdrop-filter: blur(10px);
+    }
+    .hero-product {
+      display: flex; align-items: center; gap: 10px;
+      padding: 16px 24px; color: var(--white);
+      text-decoration: none; font-size: .82rem; font-weight: 500;
+      border-right: 1px solid rgba(255,255,255,.1);
+      transition: background .2s; flex: 1; justify-content: center;
+    }
+    .hero-product:last-child { border-right: none; }
+    .hero-product:hover { background: rgba(59,130,246,.15); }
+    .hero-product-icon { font-size: 1.3rem; }
+
+    .carousel-dots {
+      position: absolute; bottom: 72px; left: 50%;
+      transform: translateX(-50%); z-index: 3;
+      display: flex; gap: 8px;
+    }
+    .carousel-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,.35); cursor: pointer;
+      transition: background .3s, transform .3s;
+    }
+    .carousel-dot.active { background: var(--gold); transform: scale(1.3); }
+
+    /* ── FEATURES ── */
+    .features { padding: 110px 6%; background: var(--s1); }
+    .features-label {
+      text-align: center; font-size: .72rem; font-weight: 700;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 16px;
+    }
+    .features h2 {
+      text-align: center; font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.8rem, 5vw, 5rem); letter-spacing: .03em;
+      line-height: 1; margin-bottom: 16px; color: var(--white);
+    }
+    .features > p {
+      text-align: center; font-size: 1rem; color: var(--muted);
+      max-width: 500px; margin: 0 auto 64px; line-height: 1.7;
+    }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+      border-radius: var(--radius); overflow: hidden;
+    }
+    .feature-card {
+      background: var(--s2); overflow: hidden;
+      transition: background .3s;
+    }
+    .feature-card:hover { background: #252525; }
+    .feature-card-img { width: 100%; height: 200px; object-fit: cover; display: block; }
+    .feature-card-body { padding: 24px 22px 28px; }
+    .feature-icon { font-size: 1.4rem; margin-bottom: 12px; display: block; }
+    .feature-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: .04em; color: var(--white); margin-bottom: 8px; }
+    .feature-card p { font-size: .83rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── SERVICES ── */
+    .products { padding: 110px 6%; background: var(--bg); }
+    .section-header { text-align: center; margin-bottom: 56px; }
+    .section-label {
+      display: inline-block; font-size: .72rem; font-weight: 700;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--glow); margin-bottom: 14px;
+    }
+    .section-header h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.8rem, 5vw, 5rem); letter-spacing: .03em;
+      line-height: 1; color: var(--white); margin-bottom: 14px;
+    }
+    .section-header p { color: var(--muted); font-size: 1rem; max-width: 500px; margin: 0 auto; line-height: 1.7; }
+    .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .product-card {
+      background: var(--s1); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      transition: border-color .3s, transform .3s;
+    }
+    .product-card:hover { border-color: rgba(59,130,246,.4); transform: translateY(-4px); }
+    .product-card-image { position: relative; height: 200px; overflow: hidden; }
+    .product-card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+    .product-card:hover .product-card-image img { transform: scale(1.06); }
+    .product-tag {
+      position: absolute; top: 12px; left: 12px;
+      background: var(--green); color: var(--white);
+      font-size: .68rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 20px;
+    }
+    .product-card-body { padding: 20px; }
+    .product-card-body h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: .04em; color: var(--white); margin-bottom: 8px; }
+    .product-card-body p { font-size: .82rem; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+    .product-card-body a { color: var(--glow); font-size: .82rem; font-weight: 600; text-decoration: none; transition: gap .2s; display: inline-flex; align-items: center; gap: 4px; }
+    .product-card-body a::after { content: '→'; }
+    .product-card-body a:hover { gap: 8px; }
+
+    /* ── HOW IT WORKS ── */
+    .how { padding: 110px 6%; background: var(--s1); }
+    .how-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; position: relative; margin-top: 56px; }
+    .how-steps::before { content: ''; position: absolute; top: 28px; left: calc(16.66% + 14px); right: calc(16.66% + 14px); height: 1px; background: linear-gradient(90deg, var(--glow), var(--gold)); opacity: .3; }
+    .how-step { text-align: center; }
+    .step-number {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--green), #2563eb);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: .04em;
+      color: var(--white); margin-bottom: 20px; position: relative; z-index: 1;
+      box-shadow: 0 0 20px rgba(59,130,246,.2);
+    }
+    .how-step h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: .04em; color: var(--white); margin-bottom: 10px; }
+    .how-step p { font-size: .83rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── ABOUT / VISION ── */
+    .vision { padding: 110px 6%; background: var(--bg); }
+    .vision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .vision-images { position: relative; height: 460px; }
+    .vision-img-main { position: absolute; top: 0; left: 0; width: 75%; height: 80%; object-fit: cover; border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+    .vision-img-accent { position: absolute; bottom: 0; right: 0; width: 55%; height: 55%; object-fit: cover; border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,.4); border: 3px solid var(--bg); }
+    .vision-badge {
+      position: absolute; top: 46%; left: 58%; z-index: 2;
+      background: var(--green); border-radius: 14px;
+      padding: 16px 20px; text-align: center;
+      box-shadow: 0 8px 32px rgba(26,74,138,.35);
+    }
+    .vision-badge strong { display: block; font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--white); letter-spacing: .04em; }
+    .vision-badge span { font-size: .72rem; color: rgba(255,255,255,.8); text-transform: uppercase; letter-spacing: .08em; }
+    .vision-content .section-label { display: block; margin-bottom: 16px; }
+    .vision-content h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.4rem, 4vw, 4rem); letter-spacing: .03em; line-height: 1; color: var(--white); margin-bottom: 20px; }
+    .vision-content p { color: var(--muted); font-size: .95rem; line-height: 1.8; margin-bottom: 16px; }
+    .vision-features { display: flex; flex-direction: column; gap: 18px; margin: 28px 0 36px; }
+    .vision-feature { display: flex; align-items: flex-start; gap: 14px; }
+    .vision-feature-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+    .vision-feature-text strong { display: block; font-size: .9rem; font-weight: 600; color: var(--white); margin-bottom: 3px; }
+    .vision-feature-text span { font-size: .82rem; color: var(--muted); line-height: 1.5; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { padding: 110px 6%; background: var(--s1); }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; }
+    .testimonial-card {
+      background: var(--s2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 32px 28px;
+      transition: border-color .3s, transform .3s;
+    }
+    .testimonial-card:hover { border-color: rgba(59,130,246,.3); transform: translateY(-4px); }
+    .stars { color: var(--gold); font-size: 1rem; letter-spacing: 2px; margin-bottom: 16px; }
+    .testimonial-card p { font-size: .88rem; color: var(--muted); line-height: 1.75; margin-bottom: 24px; font-style: italic; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--green), #2563eb);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: var(--white);
+      flex-shrink: 0;
+    }
+    .testimonial-author strong { display: block; font-size: .88rem; font-weight: 600; color: var(--white); }
+    .testimonial-author span { font-size: .78rem; color: var(--muted); }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      padding: 100px 6%; background: var(--green);
+      text-align: center;
+      background: linear-gradient(135deg, #1a4a8a 0%, #2563eb 100%);
+    }
+    .cta-banner p { font-size: .8rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.7); margin-bottom: 16px; }
+    .cta-banner h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.8rem, 6vw, 6rem); letter-spacing: .03em; line-height: 1; color: var(--white); margin-bottom: 36px; }
+    .cta-banner h2 em { font-style: italic; font-family: 'Playfair Display', serif; color: var(--gold); }
+    .btn-gold {
+      background: var(--gold); color: #1a1208;
+      padding: 16px 40px; border-radius: 50px;
+      text-decoration: none; font-weight: 700; font-size: 1rem;
+      display: inline-block; transition: transform .2s, box-shadow .3s;
+      box-shadow: 0 0 40px rgba(245,158,11,.3);
+    }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 0 60px rgba(245,158,11,.5); }
+
+    /* ── CONTACT ── */
+    .contact { padding: 110px 6%; background: var(--bg); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; }
+    .contact-info .section-label { display: block; margin-bottom: 16px; }
+    .contact-info h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.4rem, 4vw, 4rem); letter-spacing: .03em; line-height: 1; color: var(--white); margin-bottom: 14px; }
+    .contact-info > p { color: var(--muted); font-size: .95rem; line-height: 1.7; margin-bottom: 36px; }
+    .contact-details { display: flex; flex-direction: column; gap: 20px; }
+    .contact-item { display: flex; align-items: flex-start; gap: 14px; }
+    .contact-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+    .contact-item strong { display: block; font-size: .88rem; font-weight: 600; color: var(--white); margin-bottom: 3px; }
+    .contact-item p { font-size: .83rem; color: var(--muted); line-height: 1.5; }
+    .contact-form {
+      background: var(--s1); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 36px;
+    }
+    .contact-form h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: .04em; color: var(--white); margin-bottom: 28px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .form-group label { font-size: .8rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+    .form-group input, .form-group select, .form-group textarea {
+      background: var(--s2); border: 1px solid var(--border);
+      border-radius: 8px; padding: 11px 14px;
+      color: var(--white); font-size: .9rem; font-family: 'Inter', sans-serif;
+      transition: border-color .2s; outline: none;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--glow); }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-group select option { background: #1c1c1c; }
+    .form-submit {
+      width: 100%; padding: 14px; border-radius: 50px;
+      background: var(--green); color: var(--white);
+      font-size: 1rem; font-weight: 700; font-family: 'Inter', sans-serif;
+      border: none; cursor: pointer;
+      transition: background .2s, box-shadow .3s;
+      box-shadow: 0 0 24px rgba(59,130,246,.2);
+    }
+    .form-submit:hover { background: #2563eb; box-shadow: 0 0 40px rgba(59,130,246,.4); }
+
+    /* ── FOOTER ── */
+    footer { background: #060606; border-top: 1px solid var(--border); padding: 40px 6% 28px; }
+    .footer-top { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 24px; margin-bottom: 32px; }
+    .footer-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .footer-brand img { height: 40px; width: auto; object-fit: contain; }
+    .footer-brand span { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: .08em; color: var(--white); }
+    .footer-tagline { font-size: .78rem; color: var(--muted); margin-top: 8px; }
+    .footer-nav { list-style: none; display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
+    .footer-nav a { color: var(--muted); text-decoration: none; font-size: .85rem; transition: color .2s; }
+    .footer-nav a:hover { color: var(--white); }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; border-top: 1px solid var(--border); padding-top: 24px; }
+    .footer-bottom span { font-size: .75rem; color: rgba(255,255,255,.25); }
+    .social-links { display: flex; gap: 10px; }
+    .social-link {
+      width: 34px; height: 34px; border-radius: 8px;
+      background: var(--s2); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); text-decoration: none; font-size: .8rem; font-weight: 700;
+      transition: background .2s, color .2s; flex-shrink: 0;
+    }
+    .social-link:hover { background: var(--green); color: var(--white); border-color: transparent; }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── HAMBURGER + MOBILE DRAWER ── */
+    .nav-hamburger { display: none; flex-direction: column; justify-content: space-between; width: 28px; height: 20px; background: none; border: none; cursor: pointer; padding: 0; z-index: 101; flex-shrink: 0; }
+    .nav-hamburger span { display: block; width: 100%; height: 2px; background: var(--white); border-radius: 2px; transition: transform .3s, opacity .3s; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+    .mobile-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 200; opacity: 0; pointer-events: none; transition: opacity .3s; }
+    .mobile-overlay.open { opacity: 1; pointer-events: all; }
+    .mobile-drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(300px,82vw); background: #111; border-left: 1px solid rgba(255,255,255,.1); z-index: 201; display: flex; flex-direction: column; transform: translateX(100%); transition: transform .32s cubic-bezier(.4,0,.2,1); }
+    .mobile-drawer.open { transform: translateX(0); }
+    .drawer-header { display: flex; align-items: center; justify-content: space-between; padding: 0 20px; height: 64px; border-bottom: 1px solid rgba(255,255,255,.08); flex-shrink: 0; }
+    .drawer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: .08em; color: #fff; text-decoration: none; }
+    .drawer-close { background: none; border: none; color: rgba(255,255,255,.45); font-size: 1.4rem; cursor: pointer; padding: 4px; line-height: 1; transition: color .2s; }
+    .drawer-close:hover { color: #fff; }
+    .drawer-links { flex: 1; display: flex; flex-direction: column; padding: 8px 0; overflow-y: auto; }
+    .drawer-links a { display: block; padding: 16px 24px; color: rgba(255,255,255,.7); text-decoration: none; font-size: .92rem; font-weight: 500; border-bottom: 1px solid rgba(255,255,255,.06); text-transform: uppercase; letter-spacing: .06em; transition: color .2s, background .2s; }
+    .drawer-links a:hover { color: #fff; background: rgba(255,255,255,.04); }
+    .drawer-links .drawer-cta { background: #1a4a8a; color: #fff !important; margin: 14px 16px; border-radius: 8px; border: none; text-align: center; font-weight: 600; letter-spacing: .04em; }
+    .drawer-links .drawer-cta:hover { background: #2563eb !important; }
+    .drawer-theme { padding: 14px 20px 10px; border-top: 1px solid rgba(255,255,255,.08); flex-shrink: 0; }
+    .theme-nav-btn { background: none; border: none; cursor: pointer; font-size: .85rem; font-family: 'Inter', sans-serif; font-weight: 500; color: var(--muted); display: inline-flex; align-items: center; gap: 5px; padding: 0; transition: color .2s; }
+    .theme-nav-btn:hover { color: var(--white); }
+    .drawer-social { display: flex; align-items: center; justify-content: space-around; padding: 8px 16px 18px; border-top: 1px solid rgba(255,255,255,.08); }
+    .nls-btn { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; text-decoration: none; flex-shrink: 0; transition: background .15s, transform .15s; }
+    .nls-btn svg { width: 18px; height: 18px; display: block; pointer-events: none; }
+    .nls-btn:hover { transform: scale(1.15); }
+    .nls-whatsapp { color: #25D366; } .nls-whatsapp:hover { background: rgba(37,211,102,.14); }
+    .nls-instagram { color: #C13584; } .nls-instagram:hover { background: rgba(193,53,132,.12); }
+    .nls-facebook { color: #1877F2; } .nls-facebook:hover { background: rgba(24,119,242,.12); }
+    .nls-x { color: rgba(255,255,255,.85); } .nls-x:hover { background: rgba(255,255,255,.1); }
+    .nls-tiktok { color: rgba(255,255,255,.85); } .nls-tiktok:hover { background: rgba(255,255,255,.1); }
+
+    /* ── LAYER PANEL ── */
+    .nav-layer-panel { position: fixed; top: 76px; right: 6%; width: min(260px, 80vw); max-height: min(460px, 80vh); background: rgba(255,255,255,.72); backdrop-filter: blur(14px) saturate(1.6); -webkit-backdrop-filter: blur(14px) saturate(1.6); border: 1px solid rgba(255,255,255,.55); border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,.12); z-index: 300; display: flex; flex-direction: column; overflow: hidden; opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-14px) scale(.97); transition: opacity .3s, transform .3s, visibility .3s; touch-action: none; }
+    .nav-layer-panel.open { opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0) scale(1); }
+    .nav-layer-panel.nlp-custom { right: auto; transition: opacity .2s, visibility .2s; }
+    [data-theme="dark"] .nav-layer-panel { background: rgba(20,13,4,.82); border-color: rgba(255,255,255,.1); box-shadow: 0 4px 28px rgba(0,0,0,.55); }
+    .nav-layer-head { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px 8px; flex-shrink: 0; cursor: grab; border-bottom: 1px solid rgba(0,0,0,.07); user-select: none; }
+    .nav-layer-head:active { cursor: grabbing; }
+    .nav-layer-head strong { font-size: .8rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: rgba(0,0,0,.45); }
+    .nav-layer-close { background: none; border: none; font-size: 1.25rem; line-height: 1; cursor: pointer; color: rgba(0,0,0,.35); padding: 2px 6px; border-radius: 6px; transition: color .15s, background .15s; }
+    .nav-layer-close:hover { color: rgba(0,0,0,.7); background: rgba(0,0,0,.06); }
+    [data-theme="dark"] .nav-layer-head { border-bottom-color: rgba(255,255,255,.07); }
+    [data-theme="dark"] .nav-layer-head strong { color: rgba(255,255,255,.38); }
+    [data-theme="dark"] .nav-layer-close { color: rgba(255,255,255,.35); }
+    [data-theme="dark"] .nav-layer-close:hover { color: rgba(255,255,255,.8); background: rgba(255,255,255,.08); }
+    .nav-layer-scroll { flex: 1; overflow-y: auto; overscroll-behavior: contain; }
+    .nav-layer-links { display: flex; flex-direction: column; padding: 6px 0; }
+    .nav-layer-links a { display: block; padding: 12px 18px; color: rgba(0,0,0,.72); text-decoration: none; font-size: .92rem; font-weight: 500; border-bottom: 1px solid rgba(0,0,0,.05); transition: color .15s, background .15s; }
+    .nav-layer-links a:last-of-type { border-bottom: none; }
+    .nav-layer-links a:hover { color: rgba(0,0,0,.9); background: rgba(0,0,0,.04); }
+    .nav-layer-links .nav-layer-cta { margin: 10px 14px 6px; border-radius: 8px; background: #1a4a8a; color: #fff !important; text-align: center; font-weight: 600; letter-spacing: .03em; border-bottom: none; padding: 11px 18px; }
+    .nav-layer-links .nav-layer-cta:hover { background: #2563eb !important; }
+    [data-theme="dark"] .nav-layer-links a { color: rgba(255,255,255,.7); border-bottom-color: rgba(255,255,255,.06); }
+    [data-theme="dark"] .nav-layer-links a:hover { color: #fff; background: rgba(255,255,255,.06); }
+    .nav-layer-theme { padding: 10px 16px 8px; border-top: 1px solid rgba(0,0,0,.06); flex-shrink: 0; }
+    .nav-layer-theme .theme-nav-btn { color: rgba(0,0,0,.5); }
+    .nav-layer-theme .theme-nav-btn:hover { color: rgba(0,0,0,.85); }
+    [data-theme="dark"] .nav-layer-theme { border-top-color: rgba(255,255,255,.07); }
+    [data-theme="dark"] .nav-layer-theme .theme-nav-btn { color: rgba(255,255,255,.45); }
+    [data-theme="dark"] .nav-layer-theme .theme-nav-btn:hover { color: #fff; }
+    .nav-layer-social { display: flex; align-items: center; justify-content: space-around; padding: 8px 10px 12px; border-top: 1px solid rgba(0,0,0,.07); flex-shrink: 0; }
+    [data-theme="dark"] .nav-layer-social { border-top-color: rgba(255,255,255,.07); }
+    .nav-layer-resize { position: absolute; bottom: 0; right: 0; width: 20px; height: 20px; cursor: nwse-resize; z-index: 10; touch-action: none; user-select: none; border-radius: 0 0 12px 0; }
+    .nav-layer-resize::before, .nav-layer-resize::after { content: ''; position: absolute; background: rgba(0,0,0,.25); border-radius: 1px; }
+    .nav-layer-resize::before { bottom: 5px; right: 3px; width: 10px; height: 1.5px; transform: rotate(-45deg); }
+    .nav-layer-resize::after { bottom: 9px; right: 3px; width: 6px; height: 1.5px; transform: rotate(-45deg); }
+    [data-theme="dark"] .nav-layer-resize::before, [data-theme="dark"] .nav-layer-resize::after { background: rgba(255,255,255,.25); }
+    .nav-hamburger.panel-active { opacity: 0; pointer-events: none; }
+
+    /* ── LIGHT THEME ── */
+    [data-theme="light"] body { background: #f0f4ff; color: #0f172a; }
+    [data-theme="light"] nav { background: rgba(240,244,255,.96) !important; border-bottom-color: #dbe4f3 !important; }
+    [data-theme="light"] .nav-logo span { color: #1a4a8a; }
+    [data-theme="light"] .nav-links a { color: #4a5568; }
+    [data-theme="light"] .nav-links a:hover { color: #0f172a; }
+    [data-theme="light"] .theme-nav-btn { color: #4a5568; }
+    [data-theme="light"] .theme-nav-btn:hover { color: #1a4a8a; }
+    [data-theme="light"] .features { background: #ffffff; }
+    [data-theme="light"] .features h2 { color: #0f172a; }
+    [data-theme="light"] .features > p { color: #4a5568; }
+    [data-theme="light"] .feature-card { background: #f8faff; }
+    [data-theme="light"] .feature-card:hover { background: #eef2ff; }
+    [data-theme="light"] .feature-card h3 { color: #0f172a; }
+    [data-theme="light"] .feature-card p { color: #4a5568; }
+    [data-theme="light"] .products { background: #f0f4ff; }
+    [data-theme="light"] .section-header h2 { color: #0f172a; }
+    [data-theme="light"] .section-header p { color: #4a5568; }
+    [data-theme="light"] .product-card { background: #ffffff; border-color: #dbe4f3; }
+    [data-theme="light"] .product-card:hover { box-shadow: 0 16px 48px rgba(0,0,0,.1); }
+    [data-theme="light"] .product-card-body h3 { color: #0f172a; }
+    [data-theme="light"] .product-card-body p { color: #4a5568; }
+    [data-theme="light"] .how { background: #ffffff; }
+    [data-theme="light"] .how-step h3 { color: #0f172a; }
+    [data-theme="light"] .how-step p { color: #4a5568; }
+    [data-theme="light"] .vision { background: #f0f4ff; }
+    [data-theme="light"] .vision-content h2 { color: #0f172a; }
+    [data-theme="light"] .vision-content p { color: #4a5568; }
+    [data-theme="light"] .vision-feature-text strong { color: #0f172a; }
+    [data-theme="light"] .vision-feature-text span { color: #4a5568; }
+    [data-theme="light"] .testimonials { background: #ffffff; }
+    [data-theme="light"] .testimonial-card { background: #f8faff; border-color: #dbe4f3; }
+    [data-theme="light"] .testimonial-card p { color: #4a5568; }
+    [data-theme="light"] .testimonial-author strong { color: #0f172a; }
+    [data-theme="light"] .contact { background: #f0f4ff; }
+    [data-theme="light"] .contact-info h2 { color: #0f172a; }
+    [data-theme="light"] .contact-info > p { color: #4a5568; }
+    [data-theme="light"] .contact-item strong { color: #0f172a; }
+    [data-theme="light"] .contact-item p { color: #4a5568; }
+    [data-theme="light"] .contact-form { background: #ffffff; border-color: #dbe4f3; }
+    [data-theme="light"] .contact-form h3 { color: #0f172a; }
+    [data-theme="light"] .form-group label { color: #4a5568; }
+    [data-theme="light"] .form-group input,
+    [data-theme="light"] .form-group select,
+    [data-theme="light"] .form-group textarea { background: #f8faff; border-color: #dbe4f3; color: #0f172a; }
+    [data-theme="light"] .form-group input::placeholder,
+    [data-theme="light"] .form-group textarea::placeholder { color: #94a3b8; }
+    [data-theme="light"] footer { background: #e8edf8; border-top-color: #dbe4f3; }
+    [data-theme="light"] .footer-brand span { color: #1a4a8a; }
+    [data-theme="light"] .footer-tagline { color: #4a5568; }
+    [data-theme="light"] .footer-nav a { color: #4a5568; }
+    [data-theme="light"] .footer-nav a:hover { color: #0f172a; }
+    [data-theme="light"] .footer-bottom span { color: rgba(15,23,42,.4); }
+    [data-theme="light"] .social-link { background: #ffffff; border-color: #dbe4f3; color: #4a5568; }
+    [data-theme="light"] .mobile-drawer { background: #f0f4ff; border-left-color: rgba(0,0,0,.1); }
+    [data-theme="light"] .drawer-logo { color: #1a4a8a; }
+    [data-theme="light"] .drawer-close { color: rgba(0,0,0,.4); }
+    [data-theme="light"] .drawer-links a { color: #4a5568; border-bottom-color: rgba(0,0,0,.07); }
+    [data-theme="light"] .drawer-links a:hover { color: #0f172a; background: rgba(0,0,0,.03); }
+    [data-theme="light"] .nls-x { color: #0f0f0f; }
+    [data-theme="light"] .nls-tiktok { color: #010101; }
+    [data-theme="light"] .nav-hamburger span { background: #1a4a8a; }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:1024px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media(max-width:900px) {
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .vision-grid { grid-template-columns: 1fr; }
+      .vision-images { height: 300px; margin-bottom: 40px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .how-steps { grid-template-columns: 1fr; gap: 32px; }
+      .how-steps::before { display: none; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex !important; }
+    }
+    @media(max-width:600px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .products-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-products { display: none; }
+    }
+  </style>
+  <script>
+    (function(){
+      var t = localStorage.getItem('cft-theme') || 'light';
+      localStorage.setItem('cft-theme', t);
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="#">
+    <span>CHRISFOTECH</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#products">Services</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#vision">About Us</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><button id="themeToggle" class="theme-nav-btn" aria-label="Toggle theme">🌙 <span class="theme-label">Dark Mode</span></button></li>
+  </ul>
+  <a class="nav-cta" href="#contact" style="margin-right:12px">Book a Clean</a>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-overlay" id="mobileOverlay"></div>
+<div class="mobile-drawer" id="mobileDrawer">
+  <div class="drawer-header">
+    <a class="drawer-logo" href="#">CHRISFOTECH</a>
+    <button class="drawer-close" id="drawerClose" aria-label="Close">✕</button>
+  </div>
+  <div class="drawer-links">
+    <a href="#products">Services</a>
+    <a href="#how">How It Works</a>
+    <a href="#vision">About Us</a>
+    <a href="#testimonials">Reviews</a>
+    <a href="#contact" class="drawer-cta">Book a Clean</a>
+  </div>
+  <div class="drawer-theme">
+    <button id="themeToggleMobile" class="theme-nav-btn" aria-label="Toggle theme">🌙 <span class="theme-label-mobile">Dark Mode</span></button>
+  </div>
+  <div class="drawer-social">
+    <a class="nls-btn nls-whatsapp" href="https://wa.me/44" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+    <a class="nls-btn nls-instagram" href="https://instagram.com/chrisfotech" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+    <a class="nls-btn nls-facebook" href="https://facebook.com/chrisfotech" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    <a class="nls-btn nls-x" href="https://x.com/chrisfotech" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    <a class="nls-btn nls-tiktok" href="https://tiktok.com/@chrisfotech" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.69a8.16 8.16 0 004.77 1.52V7.77a4.85 4.85 0 01-1-.08z"/></svg></a>
+  </div>
+</div>
+
+<!-- LAYER PANEL -->
+<div class="nav-layer-panel" id="navLayerPanel" role="dialog" aria-label="Navigation panel">
+  <div class="nav-layer-head" id="navLayerHead">
+    <strong>Menu</strong>
+    <button class="nav-layer-close" id="navLayerClose" aria-label="Close">×</button>
+  </div>
+  <div class="nav-layer-scroll">
+    <div class="nav-layer-links">
+      <a href="#products">Services</a>
+      <a href="#how">How It Works</a>
+      <a href="#vision">About Us</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#contact" class="nav-layer-cta">Book a Clean</a>
+    </div>
+  </div>
+  <div class="nav-layer-theme">
+    <button id="themeTogglePanel" class="theme-nav-btn" aria-label="Toggle theme">🌙 <span class="theme-label-panel">Dark Mode</span></button>
+  </div>
+  <div class="nav-layer-social" aria-label="Social media">
+    <a class="nls-btn nls-whatsapp" href="https://wa.me/44" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+    <a class="nls-btn nls-instagram" href="https://instagram.com/chrisfotech" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+    <a class="nls-btn nls-facebook" href="https://facebook.com/chrisfotech" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    <a class="nls-btn nls-x" href="https://x.com/chrisfotech" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    <a class="nls-btn nls-tiktok" href="https://tiktok.com/@chrisfotech" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.69a8.16 8.16 0 004.77 1.52V7.77a4.85 4.85 0 01-1-.08z"/></svg></a>
+  </div>
+  <div class="nav-layer-resize" id="navLayerResize" aria-hidden="true"></div>
+</div>
+
+<!-- BOUNDARY LOGO -->
+<img src="../1. Inputs/1. Images/logo/logo.png" alt="ChrisFoTech" class="hero-boundary-logo" />
+
+<!-- HERO -->
+<div class="hero-carousel" id="heroCarousel">
+  <div class="carousel-slide active" style="background-image:url('../1. Inputs/1. Images/random/WhatsApp Image 2026-06-23 at 05.54.32.jpeg')"></div>
+  <div class="carousel-slide" style="background-image:url('../1. Inputs/1. Images/random/WhatsApp Image 2026-06-23 at 05.54.32 (1).jpeg')"></div>
+  <div class="carousel-slide" style="background-image:url('../1. Inputs/1. Images/random/WhatsApp Image 2026-06-23 at 05.54.32 (2).jpeg')"></div>
+  <div class="carousel-slide" style="background-image:url('../1. Inputs/1. Images/random/WhatsApp Image 2026-06-23 at 05.54.32 (3).jpeg')"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">Professional &amp; Reliable</div>
+    <h1>Spotless Spaces,<br><em>Every Time</em></h1>
+    <p>ChrisFoTech delivers professional cleaning services for homes and businesses across the UK — reliable, thorough, and tailored to you.</p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn-primary">Book a Clean →</a>
+      <a href="#products" class="btn-secondary">Our Services</a>
+    </div>
+  </div>
+
+  <div class="carousel-dots" id="carouselDots">
+    <div class="carousel-dot active" data-index="0"></div>
+    <div class="carousel-dot" data-index="1"></div>
+    <div class="carousel-dot" data-index="2"></div>
+    <div class="carousel-dot" data-index="3"></div>
+  </div>
+
+  <div class="hero-products">
+    <a href="residential-cleaning.html" class="hero-product"><div class="hero-product-icon">🏠</div><span>Residential Cleaning</span></a>
+    <a href="commercial-cleaning.html" class="hero-product"><div class="hero-product-icon">🏢</div><span>Commercial Cleaning</span></a>
+    <a href="deep-cleaning.html" class="hero-product"><div class="hero-product-icon">✨</div><span>Deep Cleaning</span></a>
+    <a href="end-of-tenancy.html" class="hero-product"><div class="hero-product-icon">🔑</div><span>End of Tenancy</span></a>
+  </div>
+</div>
+
+<script>
+  (function(){
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots   = document.querySelectorAll('.carousel-dot');
+    let current  = 0, timer;
+    function goTo(n) {
+      slides[current].classList.remove('active'); dots[current].classList.remove('active');
+      current = (n + slides.length) % slides.length;
+      slides[current].classList.add('active'); dots[current].classList.add('active');
+    }
+    function start() { timer = setInterval(() => goTo(current + 1), 5000); }
+    function pause() { clearInterval(timer); }
+    dots.forEach(d => d.addEventListener('click', () => { pause(); goTo(+d.dataset.index); start(); }));
+    document.getElementById('heroCarousel').addEventListener('mouseenter', pause);
+    document.getElementById('heroCarousel').addEventListener('mouseleave', start);
+    start();
+  })();
+</script>
+
+<!-- WHY CHRISFOTECH -->
+<section class="features" id="features">
+  <div class="features-label reveal">Why ChrisFoTech</div>
+  <h2 class="reveal">Everything You Need for a Cleaner Space</h2>
+  <p class="reveal">No stress, no hassle. Our trained professionals deliver a spotless clean every time — so you can focus on what matters most.</p>
+  <div class="features-grid">
+    <div class="feature-card reveal">
+      <img class="feature-card-img" src="../1. Inputs/1. Images/random/WhatsApp Image 2026-06-23 at 05.41.58.jpeg" alt="Trained Professionals"/>
+      <div class="feature-card-body"><span class="feature-icon">👷</span><h3>Trained Professionals</h3><p>All our cleaners are fully vetted, trained, and insured — giving you complete peace of mind every time we visit.</p></div>
+    </div>
+    <div class="feature-card reveal">
+      <img class="feature-card-img" src="../1. Inputs/1. Images/random/WhatsApp Image 2026-06-23 at 05.41.48.jpeg" alt="Eco-Friendly Products"/>
+      <div class="feature-card-body"><span class="feature-icon">🌿</span><h3>Eco-Friendly Products</h3><p>We use safe, environmentally friendly cleaning products that are tough on dirt but gentle on your home and family.</p></div>
+    </div>
+    <div class="feature-card reveal">
+      <img class="feature-card-img" src="../1. Inputs/1. Images/random/WhatsApp Image 2026-06-23 at 05.37.27.jpeg" alt="Residential Cleaning"/>
+      <div class="feature-card-body"><span class="feature-icon">🏠</span><h3>Residential Cleaning</h3><p>From kitchens to bathrooms, we clean every corner of your home to the highest standard — weekly, fortnightly, or one-off.</p></div>
+    </div>
+    <div class="feature-card reveal">
+      <img class="feature-card-img" src="../1. Inputs/1. Images/random/WhatsApp Image 2026-06-23 at 05.36.32.jpeg" alt="Commercial Cleaning"/>
+      <div class="feature-card-body"><span class="feature-icon">🏢</span><h3>Commercial Cleaning</h3><p>Offices, retail spaces, and business premises kept spotless and professional — scheduled around your working hours.</p></div>
+    </div>
+    <div class="feature-card reveal">
+      <img class="feature-card-img" src="../1. Inputs/1. Images/random/WhatsApp Image 2026-06-23 at 05.35.31.jpeg" alt="Reliable and Punctual"/>
+      <div class="feature-card-body"><span class="feature-icon">⏰</span><h3>Reliable &amp; Punctual</h3><p>We show up on time, every time. Our team works to a consistent schedule so you always know what to expect.</p></div>
+    </div>
+    <div class="feature-card reveal">
+      <img class="feature-card-img" src="../1. Inputs/1. Images/random/WhatsApp Image 2026-06-23 at 05.33.47.jpeg" alt="Satisfaction Guaranteed"/>
+      <div class="feature-card-body"><span class="feature-icon">⭐</span><h3>Satisfaction Guaranteed</h3><p>Not happy? We'll come back and make it right. Your satisfaction is our priority — no questions asked.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="products" id="products">
+  <div class="section-header reveal">
+    <div class="section-label">What We Offer</div>
+    <h2>Our Services</h2>
+    <p>Professional cleaning solutions for every need — tailored to your home or business.</p>
+  </div>
+  <div class="products-grid">
+    <div class="product-card reveal">
+      <div class="product-card-image"><img src="../1. Inputs/1. Images/random/WhatsApp Image 2026-06-23 at 05.31.10.jpeg" alt="Residential Cleaning"/><span class="product-tag">Most Popular</span></div>
+      <div class="product-card-body"><h3>Residential Cleaning</h3><p>A thorough clean of your home — kitchens, bathrooms, living areas, and bedrooms. Weekly, fortnightly, or one-off.</p><a href="residential-cleaning.html">Learn More</a></div>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-card-image"><img src="../1. Inputs/1. Images/random/WhatsApp Image 2026-06-23 at 05.32.55.jpeg" alt="Commercial Cleaning"/><span class="product-tag">Flexible Hours</span></div>
+      <div class="product-card-body"><h3>Commercial Cleaning</h3><p>Keep your office, retail unit, or business premises immaculate. Scheduled to suit your opening hours — early morning or evening.</p><a href="commercial-cleaning.html">Learn More</a></div>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-card-image"><img src="../1. Inputs/1. Images/random/WhatsApp Image 2026-06-23 at 05.32.56.jpeg" alt="Deep Cleaning"/><span class="product-tag">Top to Bottom</span></div>
+      <div class="product-card-body"><h3>Deep Cleaning</h3><p>An intensive clean covering areas regular cleaning misses — inside appliances, grouting, skirting boards, and more.</p><a href="deep-cleaning.html">Learn More</a></div>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-card-image"><img src="../1. Inputs/1. Images/random/WhatsApp Image 2026-06-23 at 05.32.57.jpeg" alt="End of Tenancy"/><span class="product-tag">Deposit Protected</span></div>
+      <div class="product-card-body"><h3>End of Tenancy</h3><p>Moving in or out? Our end-of-tenancy clean meets landlord and agency standards — helping you protect your deposit and start fresh.</p><a href="end-of-tenancy.html">Learn More</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="section-header reveal">
+    <div class="section-label">How It Works</div>
+    <h2>Book Your Clean in Three Simple Steps</h2>
+    <p>Getting a professional clean from ChrisFoTech is fast and straightforward.</p>
+  </div>
+  <div class="how-steps">
+    <div class="how-step reveal">
+      <div class="step-number">1</div>
+      <h3>Get a Free Quote</h3>
+      <p>Contact us online or by phone with details of your property and the service you need. We'll provide a clear, no-obligation quote with no hidden fees.</p>
+    </div>
+    <div class="how-step reveal">
+      <div class="step-number">2</div>
+      <h3>Book Your Appointment</h3>
+      <p>Choose a date and time that works for you. We offer flexible scheduling — weekdays, evenings, and weekends are all available.</p>
+    </div>
+    <div class="how-step reveal">
+      <div class="step-number">3</div>
+      <h3>We Come to You</h3>
+      <p>Our professional team arrives on time with all the equipment and products needed, and leaves your space spotlessly clean.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT US -->
+<section class="vision" id="vision">
+  <div class="vision-grid">
+    <div class="vision-images reveal">
+      <img class="vision-img-main" src="../1. Inputs/1. Images/random/WhatsApp Image 2026-06-23 at 05.41.58 (1).jpeg" alt="ChrisFoTech team at work"/>
+      <img class="vision-img-accent" src="../1. Inputs/1. Images/random/WhatsApp Image 2026-06-23 at 05.41.58 (2).jpeg" alt="Professional cleaning result"/>
+      <div class="vision-badge"><strong>100%</strong><span>Satisfaction<br>Guaranteed</span></div>
+    </div>
+    <div class="vision-content reveal">
+      <div class="section-label">About Us</div>
+      <h2>Clean Spaces, Happy People</h2>
+      <p>We believe a clean environment makes a real difference to how people live and work. ChrisFoTech was founded on a simple principle: deliver an exceptional clean every single time, with a team you can trust.</p>
+      <p>From a single bedroom flat to a multi-floor office, we bring the same dedication, attention to detail, and professionalism to every job we take on.</p>
+      <div class="vision-features">
+        <div class="vision-feature"><div class="vision-feature-icon">🛡️</div><div class="vision-feature-text"><strong>Fully Vetted &amp; Insured</strong><span>Every cleaner is background-checked, trained, and covered by public liability insurance.</span></div></div>
+        <div class="vision-feature"><div class="vision-feature-icon">🌿</div><div class="vision-feature-text"><strong>Eco-Friendly Approach</strong><span>We use products that are safe for children, pets, and the environment.</span></div></div>
+        <div class="vision-feature"><div class="vision-feature-icon">🗓️</div><div class="vision-feature-text"><strong>Flexible Scheduling</strong><span>We work around your schedule — weekdays, evenings, and weekends available.</span></div></div>
+      </div>
+      <a href="#contact" class="btn-primary">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="section-header reveal">
+    <div class="section-label">Customer Reviews</div>
+    <h2>What Our Clients Say</h2>
+    <p>Hundreds of satisfied customers across the UK trust ChrisFoTech to keep their spaces spotless.</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal">
+      <div class="stars">★★★★★</div>
+      <p>"ChrisFoTech transformed our office. The team arrived on time, worked efficiently, and left the place looking brand new. We now have them on a weekly contract!"</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">S</div><div><strong>Sarah M.</strong><span>Office Manager, London</span></div></div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="stars">★★★★★</div>
+      <p>"Booked an end-of-tenancy clean and was amazed by the results. The landlord was completely satisfied and I got my full deposit back. Highly recommend!"</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">J</div><div><strong>James O.</strong><span>Verified Customer</span></div></div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="stars">★★★★★</div>
+      <p>"The deep clean was incredible — they got into every corner I'd been putting off for months. Professional, friendly, and thorough. Will definitely use again."</p>
+      <div class="testimonial-author"><div class="testimonial-avatar">A</div><div><strong>Abena K.</strong><span>Homeowner, Birmingham</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <p>Ready for a Cleaner Space?</p>
+  <h2>Professional cleaning, <em>done right every time.</em></h2>
+  <a href="#contact" class="btn-gold">Book Your Clean Today →</a>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <div class="section-label">Get in Touch</div>
+      <h2>We'd Love to Hear From You</h2>
+      <p>Service enquiries, quotes, or questions — we're here and ready to help.</p>
+      <div class="contact-details">
+        <div class="contact-item"><div class="contact-icon">📍</div><div><strong>Based In</strong><p>London, United Kingdom</p></div></div>
+        <div class="contact-item"><div class="contact-icon">🕐</div><div><strong>Available Hours</strong><p>Mon – Fri: 8am – 7pm<br/>Sat – Sun: 9am – 5pm</p></div></div>
+        <div class="contact-item"><div class="contact-icon">✉️</div><div><strong>Email</strong><p>contactjahbless@gmail.com</p></div></div>
+      </div>
+    </div>
+    <div class="contact-form reveal">
+      <h3>Request a Quote</h3>
+      <div class="form-row">
+        <div class="form-group"><label>First Name</label><input type="text" placeholder="First name"/></div>
+        <div class="form-group"><label>Last Name</label><input type="text" placeholder="Last name"/></div>
+      </div>
+      <div class="form-group"><label>Email</label><input type="email" placeholder="your@email.com"/></div>
+      <div class="form-group"><label>Service Required</label>
+        <select>
+          <option value="">Select a service</option>
+          <option>Residential Cleaning</option>
+          <option>Commercial Cleaning</option>
+          <option>Deep Cleaning</option>
+          <option>End of Tenancy Cleaning</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Message</label><textarea placeholder="Tell us about your property and what you need…"></textarea></div>
+      <button class="form-submit" onclick="alert('Thank you! We\'ll be in touch shortly.')">Send Enquiry →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <a class="footer-brand" href="#"><img src="../1. Inputs/1. Images/logo/logo.png" alt="ChrisFoTech"/><span>CHRISFOTECH</span></a>
+      <p class="footer-tagline">Professional Cleaning Services · London &amp; UK-Wide</p>
+    </div>
+    <ul class="footer-nav">
+      <li><a href="#products">Services</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#vision">About Us</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 ChrisFoTech Cleaning Services. All rights reserved. · London, United Kingdom</span>
+    <div class="social-links">
+      <a class="social-link" href="https://facebook.com/chrisfotech" aria-label="Facebook">f</a>
+      <a class="social-link" href="https://instagram.com/chrisfotech" aria-label="Instagram">in</a>
+      <a class="social-link" href="https://wa.me/44" aria-label="WhatsApp">W</a>
+      <a class="social-link" href="https://x.com/chrisfotech" aria-label="X">𝕏</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* Reveal on scroll */
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        revealObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  /* Nav + drawer + layer panel */
+  (function(){
+    var html        = document.documentElement;
+    var hamburger   = document.getElementById('hamburger');
+    var drawer      = document.getElementById('mobileDrawer');
+    var overlay     = document.getElementById('mobileOverlay');
+    var drawerClose = document.getElementById('drawerClose');
+    var layerPanel  = document.getElementById('navLayerPanel');
+    var layerClose  = document.getElementById('navLayerClose');
+    var layerHead   = document.getElementById('navLayerHead');
+    var resizeHandle= document.getElementById('navLayerResize');
+    var btnMain     = document.getElementById('themeToggle');
+    var btnMob      = document.getElementById('themeToggleMobile');
+    var btnPanel    = document.getElementById('themeTogglePanel');
+
+    var PANEL_POS_KEY  = 'cft-nav-panel-pos';
+    var PANEL_SIZE_KEY = 'cft-nav-panel-size';
+    var dragState = null, resizeState = null;
+    function clamp(v,lo,hi){ return Math.max(lo,Math.min(hi,v)); }
+
+    function savePanelPos(){
+      if (!layerPanel.classList.contains('nlp-custom')) return;
+      sessionStorage.setItem(PANEL_POS_KEY, JSON.stringify({left:parseInt(layerPanel.style.left)||0,top:parseInt(layerPanel.style.top)||0}));
+    }
+    function restorePanelPos(){
+      var saved=sessionStorage.getItem(PANEL_POS_KEY); if(!saved) return;
+      try{var p=JSON.parse(saved);layerPanel.classList.add('nlp-custom');layerPanel.style.left=clamp(p.left,8,window.innerWidth-layerPanel.offsetWidth-8)+'px';layerPanel.style.top=clamp(p.top,8,window.innerHeight-layerPanel.offsetHeight-8)+'px';}catch(e){}
+    }
+    function savePanelSize(){
+      sessionStorage.setItem(PANEL_SIZE_KEY,JSON.stringify({w:parseInt(layerPanel.style.width)||0,h:parseInt(layerPanel.style.maxHeight)||0}));
+    }
+    function restorePanelSize(){
+      var saved=sessionStorage.getItem(PANEL_SIZE_KEY); if(!saved) return;
+      try{var s=JSON.parse(saved);if(s.w)layerPanel.style.width=s.w+'px';if(s.h)layerPanel.style.maxHeight=s.h+'px';}catch(e){}
+    }
+    restorePanelSize();
+
+    function openDrawer(){hamburger.classList.add('open');drawer.classList.add('open');overlay.classList.add('open');document.body.style.overflow='hidden';}
+    function closeDrawer(){hamburger.classList.remove('open');drawer.classList.remove('open');overlay.classList.remove('open');document.body.style.overflow='';}
+    function openPanel(){restorePanelPos();layerPanel.classList.add('open');hamburger.classList.add('panel-active');}
+    function closePanel(){layerPanel.classList.remove('open');hamburger.classList.remove('panel-active');hamburger.classList.remove('open');}
+
+    hamburger.addEventListener('click',function(){
+      if(window.innerWidth<=900){drawer.classList.contains('open')?closeDrawer():openDrawer();}
+      else{layerPanel.classList.contains('open')?closePanel():openPanel();}
+    });
+    overlay.addEventListener('click',closeDrawer);
+    drawerClose.addEventListener('click',closeDrawer);
+    drawer.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeDrawer);});
+    layerClose.addEventListener('click',closePanel);
+    window.addEventListener('resize',function(){if(window.innerWidth<=900)closePanel();else closeDrawer();});
+
+    var velX=0,velY=0,lastT=0,lastPX=0,lastPY=0,rafId=null;
+    layerHead.addEventListener('pointerdown',function(e){if(e.target===layerClose||layerClose.contains(e.target))return;if(e.button!==0&&e.pointerType==='mouse')return;if(rafId){cancelAnimationFrame(rafId);rafId=null;}var rect=layerPanel.getBoundingClientRect();dragState={startX:e.clientX,startY:e.clientY,origLeft:rect.left,origTop:rect.top,moved:false};velX=0;velY=0;lastPX=e.clientX;lastPY=e.clientY;lastT=performance.now();layerHead.setPointerCapture(e.pointerId);e.preventDefault();});
+    layerHead.addEventListener('pointermove',function(e){if(!dragState)return;var dx=e.clientX-dragState.startX,dy=e.clientY-dragState.startY;if(!dragState.moved&&Math.hypot(dx,dy)<6)return;dragState.moved=true;var pw=layerPanel.offsetWidth,ph=layerPanel.offsetHeight;layerPanel.classList.add('nlp-custom');layerPanel.style.right='auto';layerPanel.style.top=clamp(dragState.origTop+dy,8,window.innerHeight-ph-8)+'px';layerPanel.style.left=clamp(dragState.origLeft+dx,8,window.innerWidth-pw-8)+'px';var now=performance.now(),dt=now-lastT;if(dt>0){var alpha=Math.min(1,dt/40);velX=velX*(1-alpha)+((e.clientX-lastPX)/dt*16)*alpha;velY=velY*(1-alpha)+((e.clientY-lastPY)/dt*16)*alpha;}lastPX=e.clientX;lastPY=e.clientY;lastT=performance.now();});
+    layerHead.addEventListener('pointerup',function(){if(!dragState)return;var didMove=dragState.moved;dragState=null;if(!didMove)return;var spd=Math.hypot(velX,velY);if(spd>38){var s=38/spd;velX*=s;velY*=s;}if(spd>0.8){var friction=0.92,curLeft=parseFloat(layerPanel.style.left)||0,curTop=parseFloat(layerPanel.style.top)||0,pw=layerPanel.offsetWidth,ph=layerPanel.offsetHeight;(function tick(){velX*=friction;velY*=friction;curLeft=clamp(curLeft+velX,8,window.innerWidth-pw-8);curTop=clamp(curTop+velY,8,window.innerHeight-ph-8);layerPanel.style.left=curLeft+'px';layerPanel.style.top=curTop+'px';if(Math.hypot(velX,velY)>0.25){rafId=requestAnimationFrame(tick);}else{rafId=null;savePanelPos();}})();}else{savePanelPos();}});
+
+    resizeHandle.addEventListener('pointerdown',function(e){e.stopPropagation();var rect=layerPanel.getBoundingClientRect();resizeState={startX:e.clientX,startY:e.clientY,sw:rect.width,sh:rect.height};resizeHandle.setPointerCapture(e.pointerId);e.preventDefault();});
+    resizeHandle.addEventListener('pointermove',function(e){if(!resizeState)return;var dx=e.clientX-resizeState.startX,dy=e.clientY-resizeState.startY;layerPanel.style.width=clamp(resizeState.sw+dx,200,360)+'px';layerPanel.style.maxHeight=clamp(resizeState.sh+dy,180,window.innerHeight-80)+'px';});
+    resizeHandle.addEventListener('pointerup',function(){if(resizeState)savePanelSize();resizeState=null;});
+
+    function syncThemeBtns(){
+      var dark=html.getAttribute('data-theme')==='dark';
+      if(btnMain)  btnMain.innerHTML  =dark?'☀️ <span class="theme-label">Light Mode</span>':'🌙 <span class="theme-label">Dark Mode</span>';
+      if(btnMob)   btnMob.innerHTML   =dark?'☀️ <span class="theme-label-mobile">Light Mode</span>':'🌙 <span class="theme-label-mobile">Dark Mode</span>';
+      if(btnPanel) btnPanel.innerHTML =dark?'☀️ <span class="theme-label-panel">Light Mode</span>':'🌙 <span class="theme-label-panel">Dark Mode</span>';
+    }
+    syncThemeBtns();
+    function applyTheme(next){html.setAttribute('data-theme',next);localStorage.setItem('cft-theme',next);syncThemeBtns();}
+    if(btnMain)  btnMain.addEventListener('click',  function(){applyTheme(html.getAttribute('data-theme')==='dark'?'light':'dark');});
+    if(btnMob)   btnMob.addEventListener('click',   function(){applyTheme(html.getAttribute('data-theme')==='dark'?'light':'dark');});
+    if(btnPanel) btnPanel.addEventListener('click', function(){applyTheme(html.getAttribute('data-theme')==='dark'?'light':'dark');});
+  })();
+</script>
+</body>
+</html>
